@@ -52,7 +52,7 @@ RUN python manage.py collectstatic --noinput
 
 # Expose the port that Gunicorn will listen on
 # This informs Docker that the container will listen on this port at runtime.
-EXPOSE 8000
+EXPOSE 8080
 
 # Define the command to run your Django application using Gunicorn
 # Gunicorn is a production-ready WSGI HTTP Server.
