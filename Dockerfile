@@ -1,7 +1,7 @@
 # Use an official Python runtime as a parent image
-# Using python:3.13-slim for consistency with local environment and smaller image size
-FROM python:3.13-slim 
-# Changed to Python 3.13 slim version
+# Using python 3.13 slim version for consistency with local environment and smaller image size
+FROM python:3.13
+# Changed to Python 3.13version
 
 # Set the working directory inside the container
 # All subsequent commands will run relative to this directory
@@ -16,9 +16,9 @@ WORKDIR /app
 
 # Install a newer version of SQLite3, as Django 5.x requires 3.31 or later.
 # This step is still necessary as the default SQLite in slim images might be older.
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    sqlite3 \
-    && rm -rf /var/lib/apt/lists/* 
+#RUN apt-get update && apt-get install -y --no-install-recommends \
+    #sqlite3 \
+    #&& rm -rf /var/lib/apt/lists/* 
     # Clean up apt cache to keep image size small
 
 # Copy the requirements file first to leverage Docker's build cache.
