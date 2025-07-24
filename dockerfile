@@ -1,6 +1,6 @@
 # Use an official Python runtime as a parent image
 # We choose a slim-buster image for a smaller final image size
-FROM python:3.10-slim-buster
+FROM python
 
 # Set the working directory inside the container
 # All subsequent commands will run relative to this directory
