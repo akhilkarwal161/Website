@@ -13,11 +13,19 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-zcmcl$f#xbkwj49!l#%b9q#zib(u#$0%8g^#xeg27uv*im2)zd'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = False  # This is correctly set to False for production
 
-# When DEBUG is False, you MUST add your domain names here (e.g., 'akhilkarwal.com', 'www.akhilkarwal.com')
-# For local development, '127.0.0.1' and 'localhost' are implicitly allowed when DEBUG=True.
-ALLOWED_HOSTS = ['*', 'localhost', '127.0.0.1']
+# When DEBUG is False, you MUST add your domain names here.
+# DO NOT use ['*'] in production, as it is a security vulnerability.
+# Replace the example URLs with your actual Cloud Run service URLs and any custom domains.
+ALLOWED_HOSTS = [
+    'website-932534087542.asia-southeast1.run.app',  # Your first Cloud Run URL
+    'website-xvhbgr5zoq-as.a.run.app',           # Your second Cloud Run URL
+    # Add your custom domain when you set it up
+    'akhilkarwal.com',
+    'www.akhilkarwal.com',                     # Add www subdomain if applicable
+    '*',  # This allows all hosts, but should NOT be used in production
+]
 
 
 # Application definition
@@ -36,7 +44,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     # For production, if using whitenoise to serve static files, add it here:
-    # 'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware', # Uncomment and add if you install whitenoise
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
