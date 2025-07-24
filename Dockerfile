@@ -1,6 +1,7 @@
 # Use an official Python runtime as a parent image
-# We choose a slim-buster image for a smaller final image size
-FROM python
+# Using python:3.13-slim for consistency with local environment and smaller image size
+FROM python:3.13-slim 
+# Changed to Python 3.13 slim version
 
 # Set the working directory inside the container
 # All subsequent commands will run relative to this directory
@@ -12,6 +13,13 @@ WORKDIR /app
 # RUN apt-get update && apt-get install -y --no-install-recommends \
 #     postgresql-client \
 #     && rm -rf /var/lib/apt/lists/*
+
+# Install a newer version of SQLite3, as Django 5.x requires 3.31 or later.
+# This step is still necessary as the default SQLite in slim images might be older.
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    sqlite3 \
+    && rm -rf /var/lib/apt/lists/* 
+    # Clean up apt cache to keep image size small
 
 # Copy the requirements file first to leverage Docker's build cache.
 # If requirements.txt doesn't change, this step won't re-run.
@@ -44,8 +52,7 @@ RUN python manage.py collectstatic --noinput
 
 # Expose the port that Gunicorn will listen on
 # This informs Docker that the container will listen on this port at runtime.
-EXPOSE 8080 
-#Changed to 8080 to match cloud environment expectation
+EXPOSE 8080
 
 # Define the command to run your Django application using Gunicorn
 # Gunicorn is a production-ready WSGI HTTP Server.
