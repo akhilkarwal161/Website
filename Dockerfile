@@ -44,12 +44,14 @@ RUN python manage.py collectstatic --noinput
 
 # Expose the port that Gunicorn will listen on
 # This informs Docker that the container will listen on this port at runtime.
-EXPOSE 8000
+EXPOSE 8080 
+#Changed to 8080 to match cloud environment expectation
 
 # Define the command to run your Django application using Gunicorn
 # Gunicorn is a production-ready WSGI HTTP Server.
-# --bind 0.0.0.0:8000: Binds Gunicorn to all network interfaces on port 8000.
+# --bind 0.0.0.0:${PORT}: Binds Gunicorn to all network interfaces on the port
+#                         provided by the environment variable (e.g., 8080).
 # mainweb.wsgi:application: Specifies the WSGI application to run.
 # This path refers to the 'application' object inside your 'mainweb/wsgi.py' file.
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "mainweb.wsgi:application"]
+CMD ["gunicorn", "--bind", "0.0.0.0:${PORT}", "mainweb.wsgi:application"]
 
