@@ -17,14 +17,12 @@ DEBUG = False  # This is correctly set to False for production
 
 # When DEBUG is False, you MUST add your domain names here.
 # DO NOT use ['*'] in production, as it is a security vulnerability.
-# Replace the example URLs with your actual Cloud Run service URLs and any custom domains.
+# Add your actual Cloud Run service URLs and any custom domains.
 ALLOWED_HOSTS = [
     'website-932534087542.asia-southeast1.run.app',  # Your first Cloud Run URL
     'website-xvhbgr5zoq-as.a.run.app',           # Your second Cloud Run URL
-    # Add your custom domain when you set it up
-    'akhilkarwal.com',
-    'www.akhilkarwal.com',                     # Add www subdomain if applicable
-    '*',  # This allows all hosts, but should NOT be used in production
+    # 'akhilkarwal.com',                         # Add your custom domain when you set it up
+    # 'www.akhilkarwal.com',                     # Add www subdomain if applicable
 ]
 
 
@@ -43,8 +41,8 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    # For production, if using whitenoise to serve static files, add it here:
-    # 'whitenoise.middleware.WhiteNoiseMiddleware', # Uncomment and add if you install whitenoise
+    # IMPORTANT: Add this for serving static files in production
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -120,6 +118,10 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles' # This is where collectstatic will gather files
+
+# Add this line for WhiteNoise to handle static files efficiently
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 # Media files (user-uploaded content)
 MEDIA_URL = '/media/'
