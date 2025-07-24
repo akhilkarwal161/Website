@@ -1,0 +1,36 @@
+# Ignore Git-related files and directories
+.git/
+.gitignore
+
+# Ignore Python virtual environments
+venv/
+myprojectenv/  # Your virtual environment folder
+
+# Ignore Python cache directories
+__pycache__/
+*.pyc
+
+# Ignore Django-specific development files
+*.sqlite3  # Your SQLite database file (it's generated, not part of the code)
+.env       # Environment variables file (should not be in the image)
+
+# Ignore collected static files if you collect them locally before building.
+# However, our Dockerfile runs `collectstatic` inside the container,
+# so you might want to keep this commented out or remove it if you want
+# the `staticfiles` directory to be created within the image.
+# staticfiles/
+
+# Ignore media files if they are user-uploaded and will be stored externally
+# (e.g., S3, Google Cloud Storage) or mounted as a volume.
+# If you plan to store media directly in the container for a very small app,
+# you might remove this line, but it's generally not recommended for production.
+# mediafiles/
+
+# VS Code specific files
+.vscode/
+.qodo/
+
+# Any other local development files or logs
+*.log
+tmp/
+# Ignore Docker-related files that are not needed in the image
