@@ -21,8 +21,10 @@ DEBUG = False  # This is correctly set to False for production
 ALLOWED_HOSTS = [
     'website-932534087542.asia-southeast1.run.app',  # Your first Cloud Run URL
     'website-xvhbgr5zoq-as.a.run.app',           # Your second Cloud Run URL
-    # 'akhilkarwal.com',                         # Add your custom domain when you set it up
-    # 'www.akhilkarwal.com',                     # Add www subdomain if applicable
+    # Add your custom domain when you set it up
+    'akhilkarwal.com',
+    'www.akhilkarwal.com',                     # Add www subdomain if applicable
+    '*',  # This is a wildcard and should not be used in production
 ]
 
 
