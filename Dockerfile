@@ -29,4 +29,4 @@ RUN python manage.py collectstatic --noinput
 EXPOSE 8080
 
 # Run Gunicorn to serve the Django application
-CMD ["gunicorn", "--bind", "0.0.0.0:${PORT}", "mainweb.wsgi:application"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8080", "mainweb.wsgi:application"]
