@@ -13,7 +13,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-zcmcl$f#xbkwj49!l#%b9q#zib(u#$0%8g^#xeg27uv*im2)zd'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # When DEBUG is False, you MUST add your domain names here (e.g., 'akhilkarwal.com', 'www.akhilkarwal.com')
 # For local development, '127.0.0.1' and 'localhost' are implicitly allowed when DEBUG=True.
