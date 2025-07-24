@@ -17,7 +17,7 @@ DEBUG = True
 
 # When DEBUG is False, you MUST add your domain names here (e.g., 'akhilkarwal.com', 'www.akhilkarwal.com')
 # For local development, '127.0.0.1' and 'localhost' are implicitly allowed when DEBUG=True.
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*', 'localhost', '127.0.0.1']
 
 
 # Application definition
