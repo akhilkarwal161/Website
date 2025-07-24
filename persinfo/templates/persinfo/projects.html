@@ -1,0 +1,24 @@
+{% extends 'persinfo/base.html' %}
+
+{% block content %}
+    <section class="section">
+        <h2>All My Projects</h2>
+        <div class="project-grid">
+            {% for project in all_projects %}
+                <div class="project-card">
+                    <h4>{{ project.title }}</h4>
+                    <p>{{ project.description|truncatechars:150 }}</p>
+                    <p>Technologies: {{ project.technologies }}</p>
+                    {% if project.github_link %}
+                        <a href="{{ project.github_link }}" target="_blank">GitHub</a>
+                    {% endif %}
+                    {% if project.live_link %}
+                        <a href="{{ project.live_link }}" target="_blank">Live Demo</a>
+                    {% endif %}
+                </div>
+            {% empty %}
+                <p>No projects to display yet.</p>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}

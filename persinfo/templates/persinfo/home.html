@@ -1,0 +1,35 @@
+{% extends 'persinfo/base.html' %}
+
+{% block content %}
+    <section class="hero">
+        <h2>Hi, I'm Akhil Karwal</h2>
+        <p>A passionate developer building awesome web applications.</p>
+        <a href="{% url 'persinfo:projects' %}" class="btn">View My Work</a>
+    </section>
+
+    <section class="section">
+        <h3>Latest Projects</h3>
+        <div class="project-grid">
+            {% for project in projects %}
+                <div class="project-card">
+                    <h4>{{ project.title }}</h4>
+                    <p>{{ project.description|truncatechars:100 }}</p>
+                    <a href="#" class="read-more">Learn More</a> {# Link to detail page later #}
+                </div>
+            {% empty %}
+                <p>No projects yet. Check back soon!</p>
+            {% endfor %}
+        </div>
+    </section>
+
+    <section class="section">
+        <h3>My Skills</h3>
+        <ul class="skills-list">
+            {% for skill in skills %}
+                <li>{{ skill.name }} ({{ skill.level|capfirst }})</li>
+            {% empty %}
+                <li>No skills listed yet.</li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}
