@@ -24,7 +24,7 @@ ALLOWED_HOSTS = [
     # Add your custom domain when you set it up
     'akhilkarwal.com',
     'www.akhilkarwal.com',                     # Add www subdomain if applicable
-    '*',  # This is a wildcard and should not be used in production
+    '*'  # This is not recommended for production; use specific domains instead
 ]
 
 
@@ -131,6 +131,20 @@ MEDIA_ROOT = BASE_DIR / 'mediafiles' # This is where user-uploaded files will be
 
 # Django Sites Framework
 SITE_ID = 1 # This tells Django which Site object to use by default
+
+# CSRF Configuration for Production
+# This is crucial when DEBUG is False and you're deploying to a custom domain/Cloud Run URL
+CSRF_TRUSTED_ORIGINS = [
+    'https://website-932534087542.us-east1.run.app',
+    'https://website-xvhbgr5zoq-as.a.run.app',
+    'https://akhilkarwal.com',
+    'https://www.akhilkarwal.com',
+    'https://website-932534087542.us-east1.run.app',  # Add your first Cloud Run URL
+    'https://website-xvhbgr5zoq-as.a.run.app',  # Add your second Cloud Run URL
+    # Add any other origins from which you might submit POST requests (e.g., your local dev URL if testing forms locally)
+]
+CSRF_COOKIE_SECURE = True  # Ensure CSRF cookie is only sent over HTTPS
+SESSION_COOKIE_SECURE = True  # Ensure session cookie is only sent over HTTPS
 
 
 # Default primary key field type
