@@ -6,7 +6,7 @@
         <div class="project-grid">
             {% for project in all_projects %}
                 <div class="project-card">
-                    <h4>{{ project.title }}</h4>
+                    <h4><a href="{% url 'persinfo:project_detail' project.id %}">{{ project.title }}</a></h4>
                     <p>{{ project.description|truncatechars:150 }}</p>
                     <p>Technologies: {{ project.technologies }}</p>
                     {% if project.github_link %}

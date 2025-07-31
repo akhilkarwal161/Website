@@ -1,4 +1,5 @@
 # Django settings for mainweb project.
+import os
 
 from pathlib import Path
 
@@ -13,18 +14,23 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-zcmcl$f#xbkwj49!l#%b9q#zib(u#$0%8g^#xeg27uv*im2)zd'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False  # This is correctly set to False for production
+# Set DEBUG to True for local development, and False for production.
+# You can use an environment variable to control this.
+# It will be True unless DJANGO_DEBUG is set to 'False'
+DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
 # When DEBUG is False, you MUST add your domain names here.
 # DO NOT use ['*'] in production, as it is a security vulnerability.
 # Add your actual Cloud Run service URLs and any custom domains.
 ALLOWED_HOSTS = [
-    'website-932534087542.asia-southeast1.run.app',  # Your first Cloud Run URL
-    'website-xvhbgr5zoq-as.a.run.app',           # Your second Cloud Run URL
+    'website-932534087542.asia-southeast1.run.app',
+    'website-xvhbgr5zoq-as.a.run.app',
     # Add your custom domain when you set it up
     'akhilkarwal.com',
-    'www.akhilkarwal.com',                     # Add www subdomain if applicable
-    '*'  # This is not recommended for production; use specific domains instead
+    'www.akhilkarwal.com',
+    # For local development
+    'localhost',
+    '127.0.0.1',
 ]
 
 
@@ -135,13 +141,13 @@ SITE_ID = 1 # This tells Django which Site object to use by default
 # CSRF Configuration for Production
 # This is crucial when DEBUG is False and you're deploying to a custom domain/Cloud Run URL
 CSRF_TRUSTED_ORIGINS = [
-    'https://website-932534087542.us-east1.run.app',
+    'https://website-932534087542.asia-southeast1.run.app',
     'https://website-xvhbgr5zoq-as.a.run.app',
     'https://akhilkarwal.com',
     'https://www.akhilkarwal.com',
-    'https://website-932534087542.us-east1.run.app',  # Add your first Cloud Run URL
-    'https://website-xvhbgr5zoq-as.a.run.app',  # Add your second Cloud Run URL
-    # Add any other origins from which you might submit POST requests (e.g., your local dev URL if testing forms locally)
+    # For local development
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
 ]
 CSRF_COOKIE_SECURE = True  # Ensure CSRF cookie is only sent over HTTPS
 SESSION_COOKIE_SECURE = True  # Ensure session cookie is only sent over HTTPS

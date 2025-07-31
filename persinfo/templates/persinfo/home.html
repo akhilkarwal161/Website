@@ -12,9 +12,9 @@
         <div class="project-grid">
             {% for project in projects %}
                 <div class="project-card">
-                    <h4>{{ project.title }}</h4>
+                    <h4><a href="{% url 'persinfo:project_detail' project.id %}">{{ project.title }}</a></h4>
                     <p>{{ project.description|truncatechars:100 }}</p>
-                    <a href="#" class="read-more">Learn More</a> {# Link to detail page later #}
+                    <a href="{% url 'persinfo:project_detail' project.id %}" class="read-more">Learn More</a>
                 </div>
             {% empty %}
                 <p>No projects yet. Check back soon!</p>
