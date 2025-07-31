@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Akhil Karwal's Portfolio{% endblock %}</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="{% block description %}Welcome to the personal portfolio of Akhil Karwal.{% endblock %}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:url" content="{% block og_url %}{{ request.build_absolute_uri }}{% endblock %}">
+    <meta property="og:title" content="{% block og_title %}Akhil Karwal - Personal Portfolio{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Welcome to the personal portfolio of Akhil Karwal, showcasing projects and skills.{% endblock %}">
+    {# Make sure to create a default image and place it in your static files #}
+    <meta property="og:image" content="{% block og_image %}{% static 'images/default_og_image.png' %}{% endblock %}">
+
+    <!-- Other meta tags and CSS links -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    {% block content %}{% endblock %}
+</body>
+</html>

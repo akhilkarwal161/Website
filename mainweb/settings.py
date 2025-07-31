@@ -33,6 +33,10 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
 ]
 
+# Redirect non-WWW to WWW for SEO and consistency.
+# This is handled by Django's CommonMiddleware and only works when DEBUG=False.
+PREPEND_WWW = not DEBUG
+
 
 # Application definition
 
@@ -44,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'persinfo',  # Custom app for personal information management
+    'compressor',  # For asset minification
     'django.contrib.sites',  # For site framework
 ]
 
@@ -64,7 +69,7 @@ ROOT_URLCONF = 'mainweb.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -127,8 +132,15 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles' # This is where collectstatic will gather files
 
-# Add this line for WhiteNoise to handle static files efficiently
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# Use django-compressor to minify and Whitenoise to serve compressed/hashed files
+STATICFILES_STORAGE = 'compressor.storage.CompressorManifestStaticFilesStorage'
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # Add this
+    'compressor.finders.CompressorFinder',
+)
 
 
 # Media files (user-uploaded content)
@@ -149,11 +161,18 @@ CSRF_TRUSTED_ORIGINS = [
     'http://localhost:8000',
     'http://127.0.0.1:8000',
 ]
-CSRF_COOKIE_SECURE = True  # Ensure CSRF cookie is only sent over HTTPS
-SESSION_COOKIE_SECURE = True  # Ensure session cookie is only sent over HTTPS
-
+# In development (DEBUG=True), these should be False because the dev server
+# runs over HTTP. In production (DEBUG=False), they should be True.
+CSRF_COOKIE_SECURE = not DEBUG
+SESSION_COOKIE_SECURE = not DEBUG
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+WHITENOISE_MAX_AGE = 60 * 60  # 1 hour
+
+# Django Compressor settings
+COMPRESS_ENABLED = True
+COMPRESS_OFFLINE = not DEBUG  # Creates minified files during `collectstatic`

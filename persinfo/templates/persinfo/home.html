@@ -1,5 +1,7 @@
 {% extends 'persinfo/base.html' %}
 
+{% block meta_description %}Hi, I'm Akhil Karwal, a passionate developer building awesome web applications. View my latest projects and skills.{% endblock %}
+
 {% block content %}
     <section class="hero">
         <h2>Hi, I'm Akhil Karwal</h2>
@@ -12,8 +14,8 @@
         <div class="project-grid">
             {% for project in projects %}
                 <div class="project-card">
-                    <h4><a href="{% url 'persinfo:project_detail' project.id %}">{{ project.title }}</a></h4>
-                    <p>{{ project.description|truncatechars:100 }}</p>
+                    <h4>{{ project.title }}</h4>
+                    <p>{{ project.description|truncatechars:200 }}</p>
                     <a href="{% url 'persinfo:project_detail' project.id %}" class="read-more">Learn More</a>
                 </div>
             {% empty %}

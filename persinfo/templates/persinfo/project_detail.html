@@ -1,0 +1,19 @@
+{% extends "persinfo/base.html" %} {% load static %} {# Assuming you pass a
+'project' object to this template from your view #} {% block title %}{{
+project.title }} - Akhil Karwal{% endblock %} {% block description %}{{
+project.short_description }}{% endblock %} {% block og_type %}article{% endblock
+%} {% block og_title %}{{ project.title }} - Akhil Karwal's Portfolio{% endblock
+%} {% block og_description %}{{ project.short_description }}{% endblock %} {%
+block og_image %}{% if project.image %}{{ project.image.url }}{% else %}{%
+static 'images/default_og_image.png' %}{% endif %}{% endblock %} {% block
+content %}
+<h1>{{ project.title }}</h1>
+{% if project.image %}
+<img
+  src="{{ project.image.url }}"
+  alt="{{ project.title }}"
+  style="max-width: 100%"
+/>
+{% endif %}
+<div>{{ project.long_description|safe }}</div>
+{% endblock %}

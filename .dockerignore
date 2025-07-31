@@ -11,7 +11,6 @@ __pycache__/
 *.pyc
 
 # Ignore Django-specific development files
-*.sqlite3  # Your SQLite database file (it's generated, not part of the code)
 .env       # Environment variables file (should not be in the image)
 
 # Ignore collected static files if you collect them locally before building.

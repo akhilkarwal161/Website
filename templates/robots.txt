@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /admin/
+
+# Point to the sitemap file. You can uncomment this line
+# once you have created a sitemap.xml for your site.
+# Sitemap: https://www.akhilkarwal.com/sitemap.xml

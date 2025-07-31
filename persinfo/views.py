@@ -1,5 +1,5 @@
 # persinfo/views.py
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Project, Skill, ContactMessage # Import your models
 
 def home_view(request):
@@ -38,3 +38,21 @@ def contact_view(request):
             return render(request, 'persinfo/contact.html', {'error_message': 'Please fill in all required fields.', 'page_title': 'Contact - Akhil Karwal Portfolio'})
     return render(request, 'persinfo/contact.html', {'page_title': 'Contact - Akhil Karwal Portfolio'})
 
+
+def project_detail(request, project_id):
+    project = get_object_or_404(Project, pk=project_id)
+
+    # Get previous and next projects based on creation date for navigation.
+    # Note: 'prev' is the newer project, 'next' is the older one due to ordering.
+    prev_project = Project.objects.filter(
+        created_at__gt=project.created_at).order_by('created_at').first()
+    next_project = Project.objects.filter(
+        created_at__lt=project.created_at).order_by('-created_at').first()
+
+    context = {
+        'project': project,
+        'prev_project': prev_project,
+        'next_project': next_project,
+        'page_title': f"{project.title} - Project Details"
+    }
+    return render(request, 'persinfo/project.html', context)

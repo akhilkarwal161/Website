@@ -1,10 +1,34 @@
+{%load compress%}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}{{ page_title|default:"My Portfolio" }}{% endblock %}</title>
-    {% load static %}
+    <title>{% block title %}Akhil Karwal's Portfolio{% endblock %}</title>
+
+    <!-- SEO & Social Sharing Meta Tags -->
+    <meta name="description" content="{% block description %}Welcome to the personal portfolio of Akhil Karwal, a passionate developer. Discover my projects and skills.{% endblock %}">
+    <link rel="canonical" href="{{ request.build_absolute_uri }}">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:title" content="{% block og_title %}Akhil Karwal - Personal Portfolio{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Welcome to the personal portfolio of Akhil Karwal, showcasing projects and skills.{% endblock %}">
+    <meta property="og:image" content="{% block og_image %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/default_og_image.png' %}{% endblock %}">
+
+    <!-- Schema.org markup for Google -->
+    {% block schema_org %}
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "url": "{{ request.build_absolute_uri }}",
+      "name": "Akhil Karwal's Portfolio"
+    }
+    </script>
+    {% endblock %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     {# Add other CSS links here #}
 </head>
