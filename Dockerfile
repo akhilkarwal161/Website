@@ -1,9 +1,9 @@
-# Use a specific Python 3.13 slim image for consistency and smaller size
-FROM python:3.13
+# Use a specific Python alpine image for a small footprint
+FROM python:alpine
 
 # Update packages to patch potential vulnerabilities and then clean up
-RUN apt-get update && apt-get upgrade -y --no-install-recommends && \
-    rm -rf /var/lib/apt/lists/*
+RUN apk update && apk upgrade && \
+    rm -rf /var/cache/apk/*
 
 # Set the working directory
 WORKDIR /app
