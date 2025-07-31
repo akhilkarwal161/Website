@@ -9,6 +9,8 @@ myprojectenv/  # Your virtual environment folder
 # Ignore Python cache directories
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
 
 # Ignore Django-specific development files
 .env       # Environment variables file (should not be in the image)
