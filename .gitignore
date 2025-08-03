@@ -37,7 +37,7 @@ django_cache/
 .vscode/
 *.swp
 *~
-.qodo
+.qodo/
 
 # Log files
 *.log
@@ -45,3 +45,4 @@ django_cache/
 # OS-generated files
 .DS_Store
 Thumbs.db
+
