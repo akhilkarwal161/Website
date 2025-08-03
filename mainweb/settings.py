@@ -28,6 +28,7 @@ ALLOWED_HOSTS = [
     # Add your custom domain when you set it up
     'akhilkarwal.com',
     'www.akhilkarwal.com',
+    '0.0.0.0'
     # For local development
     'localhost',
     '127.0.0.1',
@@ -166,6 +167,7 @@ CSRF_TRUSTED_ORIGINS = [
     'https://website-xvhbgr5zoq-as.a.run.app',
     'https://akhilkarwal.com',
     'https://www.akhilkarwal.com',
+    '0.0.0.0'
     # For local development
     'http://localhost:8000',
     'http://127.0.0.1:8000',
