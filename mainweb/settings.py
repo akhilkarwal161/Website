@@ -19,35 +19,25 @@ SECRET_KEY = 'django-insecure-zcmcl$f#xbkwj49!l#%b9q#zib(u#$0%8g^#xeg27uv*im2)zd
 # It will be True unless DJANGO_DEBUG is set to 'False'
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-# When DEBUG is False, you MUST add your domain names here.
-# DO NOT use ['*'] in production, as it is a security vulnerability.
-# Add your actual Cloud Run service URLs and any custom domains.
-ALLOWED_HOSTS = [
-    'website-932534087542.asia-southeast1.run.app',
-    'website-xvhbgr5zoq-as.a.run.app',
-    # Add your custom domain when you set it up
-    'akhilkarwal.com',
-    'www.akhilkarwal.com',
-    '0.0.0.0',
-    '*',
-    # For local development
-    'localhost',
-    '127.0.0.1',
-]
+if DEBUG:
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+else:
+    # When DEBUG is False, you MUST add your domain names here.
+    ALLOWED_HOSTS = [
+        'website-932534087542.asia-southeast1.run.app',
+        'website-xvhbgr5zoq-as.a.run.app',
+        'akhilkarwal.com',
+        'www.akhilkarwal.com',
+    ]
 
 # Redirect non-WWW to WWW for SEO and consistency.
 # This is handled by Django's CommonMiddleware and only works when DEBUG=False.
-PREPEND_WWW = not DEBUG
+PREPEND_WWW = False
 
 # SECURITY SETTINGS FOR PROXY
 # ------------------------------------------------------------------------------
 # Honor the 'X-Forwarded-Proto' header for request.is_secure().
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-# Redirect all non-HTTPS requests to HTTPS.
-SECURE_SSL_REDIRECT = True
-SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SECURE = True
 
 
 # Application definition
