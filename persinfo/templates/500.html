@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Server Error (500)
+- Akhil Karwal{% endblock %} {% block content %}
+<section class="section" style="text-align: center; padding: 4rem 1rem">
+  <div class="container">
+    <h1 style="font-size: 5rem; margin-bottom: 0">500</h1>
+    <h2>Internal Server Error</h2>
+    <p style="font-size: 1.2rem; margin-top: 1rem">
+      Sorry, something went wrong on our end. We are working to fix it.
+    </p>
+    <p>Please try again later. You can return to the homepage.</p>
+    <a
+      href="{% url 'persinfo:home' %}"
+      class="btn"
+      style="
+        margin-top: 2rem;
+        display: inline-block;
+        padding: 10px 25px;
+        background-color: #337ab7;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+      "
+    >
+      Return to Homepage
+    </a>
+  </div>
+</section>
+{% endblock %}

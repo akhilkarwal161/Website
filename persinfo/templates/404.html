@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Page Not Found
+(404) - Akhil Karwal{% endblock %} {% block content %}
+<section class="section" style="text-align: center; padding: 4rem 1rem">
+  <div class="container">
+    <h1 style="font-size: 5rem; margin-bottom: 0">404</h1>
+    <h2>Page Not Found</h2>
+    <p style="font-size: 1.2rem; margin-top: 1rem">
+      Sorry, the page you are looking for could not be found.
+    </p>
+    <p>
+      It might have been removed, had its name changed, or is temporarily
+      unavailable.
+    </p>
+    <a
+      href="{% url 'persinfo:home' %}"
+      class="btn"
+      style="
+        margin-top: 2rem;
+        display: inline-block;
+        padding: 10px 25px;
+        background-color: #337ab7;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+      "
+    >
+      Return to Homepage
+    </a>
+  </div>
+</section>
+{% endblock %}
