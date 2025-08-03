@@ -53,15 +53,18 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.security.SecurityMiddleware',
     # IMPORTANT: Add this for serving static files in production
     'whitenoise.middleware.WhiteNoiseMiddleware',
+    'django.middleware.gzip.GZipMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 
 ROOT_URLCONF = 'mainweb.urls'
@@ -130,6 +133,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+# When not in debug mode, use a CDN if the CDN_HOST environment variable is set.
+if not DEBUG:
+    CDN_HOST = os.environ.get('CDN_HOST')
+    if CDN_HOST:
+        STATIC_URL = f'https://{CDN_HOST}/static/'
+
 STATIC_ROOT = BASE_DIR / 'staticfiles' # This is where collectstatic will gather files
 
 # Use django-compressor to minify and Whitenoise to serve compressed/hashed files
@@ -165,6 +174,32 @@ CSRF_TRUSTED_ORIGINS = [
 # runs over HTTP. In production (DEBUG=False), they should be True.
 CSRF_COOKIE_SECURE = not DEBUG
 SESSION_COOKIE_SECURE = not DEBUG
+
+# HTTPS/Security Settings for Production
+# Redirect all HTTP requests to HTTPS.
+SECURE_SSL_REDIRECT = not DEBUG
+
+# HSTS (HTTP Strict Transport Security) settings.
+# Instructs the browser to only use HTTPS for the next 30 days.
+# WARNING: Start with a small value (e.g., 3600 for 1 hour) and increase once you are
+# confident that your site is fully functional over HTTPS.
+SECURE_HSTS_SECONDS = 2592000 if not DEBUG else 0  # 30 days
+SECURE_HSTS_INCLUDE_SUBDOMAINS = not DEBUG
+SECURE_HSTS_PRELOAD = not DEBUG
+
+# Caching Configuration
+# https://docs.djangoproject.com/en/5.2/topics/cache/
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
+        "LOCATION": BASE_DIR / "django_cache",
+    }
+}
+
+# Cache middleware settings
+CACHE_MIDDLEWARE_ALIAS = "default"  # Which cache to use.
+CACHE_MIDDLEWARE_SECONDS = 900  # 15 minutes.
+CACHE_MIDDLEWARE_KEY_PREFIX = "portfolio"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

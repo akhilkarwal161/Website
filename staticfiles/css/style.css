@@ -177,3 +177,71 @@ footer {
     color: #fff;
     margin-top: 20px;
 }
+.main-nav {
+    text-align: center;
+    padding: 1rem;
+    background-color: #f4f4f4;
+    font-size: 1.2rem;
+}
+
+.main-nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #337ab7;
+}
+
+/* Media Query for smaller screens */
+@media (max-width: 768px) {
+    .main-nav a {
+        display: block;
+        margin: 10px 0;
+    }
+}
+
+.profile-page {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.social-links {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.2em;
+    transition: transform 0.2s;
+}
+
+.social-link:hover {
+    transform: translateY(-3px);
+}
+
+.social-link i {
+    margin-right: 10px;
+}
+
+.github {
+    background-color: #333;
+}
+
+.linkedin {
+    background-color: #0077b5;
+}
+
+.twitter {
+    background-color: #1da1f2;
+}
+
+.email {
+    background-color: #777;
+}

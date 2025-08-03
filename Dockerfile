@@ -18,6 +18,9 @@ COPY . .
 # Set Django settings module and Python unbuffered output
 ENV DJANGO_SETTINGS_MODULE=mainweb.settings
 ENV PYTHONUNBUFFERED=1
+# Set DJANGO_DEBUG to 'False' for production. This enables security features
+# and optimizations like PREPEND_WWW.
+ENV DJANGO_DEBUG=False
 
 # Ensure the database file exists and migrations are applied
 # The migrate command will use the db.sqlite3 file that was copied in
@@ -31,4 +34,5 @@ EXPOSE 8080
 
 # Run Gunicorn to serve the Django application
 # Gunicorn will now use the pre-migrated db.sqlite3 file that has your data
-CMD ["gunicorn", "--bind", "0.0.0.0:8080", "mainweb.wsgi:application"]
+# Add the --compress flag to enable GZIP compression for responses
+CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--compress", "mainweb.wsgi:application"]

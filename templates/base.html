@@ -3,23 +3,75 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <!-- Add the viewport meta tag for responsive design -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>{% block title %}Akhil Karwal's Portfolio{% endblock %}</title>
 
     <!-- SEO Meta Tags -->
     <meta name="description" content="{% block description %}Welcome to the personal portfolio of Akhil Karwal.{% endblock %}">
 
+    <!-- Keywords Tag -->
+    <meta name="keywords" content="{% block keywords %}Akhil Karwal, portfolio, developer, python, django, projects, software engineer{% endblock %}">
+
+    <!-- Canonical URL Tag -->
+    <link rel="canonical" href="{% block canonical_url %}{{ request.build_absolute_uri }}{% endblock %}">
+
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="{% block og_type %}website{% endblock %}">
+    <meta property="og:type" content="{% block og_type %}profile{% endblock %}">
+    <meta property="profile:first_name" content="Akhil">
+    <meta property="profile:last_name" content="Karwal">
     <meta property="og:url" content="{% block og_url %}{{ request.build_absolute_uri }}{% endblock %}">
+    <meta property="og:site_name" content="Akhil Karwal's Portfolio">
     <meta property="og:title" content="{% block og_title %}Akhil Karwal - Personal Portfolio{% endblock %}">
     <meta property="og:description" content="{% block og_description %}Welcome to the personal portfolio of Akhil Karwal, showcasing projects and skills.{% endblock %}">
     {# Make sure to create a default image and place it in your static files #}
     <meta property="og:image" content="{% block og_image %}{% static 'images/default_og_image.png' %}{% endblock %}">
 
-    <!-- Other meta tags and CSS links -->
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- Replace @YourTwitterHandle with your actual Twitter handle -->
+    <meta name="twitter:creator" content="@YourTwitterHandle">
+    <meta name="twitter:title" content="{% block twitter_title %}Akhil Karwal - Personal Portfolio{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}Welcome to the personal portfolio of Akhil Karwal, showcasing projects and skills.{% endblock %}">
+    <meta name="twitter:image" content="{% block twitter_image %}{% static 'images/default_og_image.png' %}{% endblock %}">
+
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}" sizes="any">
+    <link rel="icon" href="{% static 'images/favicons/favicon.svg' %}" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="{% static 'images/favicons/apple-touch-icon.png' %}">
+    <link rel="manifest" href="{% static 'site.webmanifest' %}">
+
+    <!--
+    Load CSS asynchronously to prevent render-blocking.
+    'preload' fetches the stylesheet without blocking rendering. The `onload`
+    event then applies the stylesheet to the document.
+    -->
+    <link rel="preload" href="{% static 'css/style.css' %}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{% static 'css/style.css' %}"></noscript>
+
+    <!-- Font Awesome for social icons (loaded asynchronously from its CDN) -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"></noscript>
+
+
 </head>
 <body>
+    <!-- Example Navigation: Add a link to your profile page in your site's navbar -->
+    <nav class="main-nav">
+        <a href="/">Home</a>
+        <a href="#">Projects</a>
+        <a href="{% url 'persinfo:profile' %}">Profile</a>
+        <a href="#">Contact</a>
+    </nav>
     {% block content %}{% endblock %}
+
+    <!--
+    JavaScript files should be placed here, just before the closing </body> tag.
+    Using the 'defer' attribute ensures they are executed after the HTML is parsed
+    and do not block page rendering.
+    Example:
+    <script src="{% static 'js/your_script.js' %}" defer></script>
+    -->
 </body>
 </html>

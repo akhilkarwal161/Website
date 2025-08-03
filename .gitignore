@@ -1,0 +1,47 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# C extensions
+*.so
+
+# Distribution / packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+
+
+# Django cache directory
+django_cache/
+
+# Environment variables file
+.env
+
+# IDE and editor files
+.idea/
+.vscode/
+*.swp
+*~
+.qodo
+
+# Log files
+*.log
+
+# OS-generated files
+.DS_Store
+Thumbs.db

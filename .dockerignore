@@ -34,4 +34,5 @@ __pycache__/
 # Any other local development files or logs
 *.log
 tmp/
+django_cache/
 # Ignore Docker-related files that are not needed in the image

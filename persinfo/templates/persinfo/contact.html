@@ -1,6 +1,34 @@
 {% extends 'persinfo/base.html' %}
 
 {% block content %}
+  
+    <div class="container profile-page">
+        <h1>Connect With Me</h1>
+        <p>
+            You can find me on the following platforms. I'm always open to connecting
+            with fellow developers and collaborators!
+        </p>
+
+        <div class="social-links">
+            <a
+            href="https://github.com/akhilkarwal161"
+            target="_blank"
+            class="social-link github"
+            >
+            <i class="fab fa-github"></i> GitHub
+            </a>
+            <a
+            href="https://www.linkedin.com/in/akhil-karwal-ba5114235/"
+            target="_blank"
+            class="social-link linkedin"
+            >
+            <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="mailto:akhilkarwal161@gmail.com" class="social-link email">
+            <i class="fas fa-envelope"></i> Email
+            </a>
+        </div>
+    </div>
     <section class="section">
         <h2>Contact Me</h2>
         {% if success_message %}
