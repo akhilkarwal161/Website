@@ -28,7 +28,8 @@ ALLOWED_HOSTS = [
     # Add your custom domain when you set it up
     'akhilkarwal.com',
     'www.akhilkarwal.com',
-    '0.0.0.0'
+    '0.0.0.0',
+    '*',
     # For local development
     'localhost',
     '127.0.0.1',
@@ -37,6 +38,16 @@ ALLOWED_HOSTS = [
 # Redirect non-WWW to WWW for SEO and consistency.
 # This is handled by Django's CommonMiddleware and only works when DEBUG=False.
 PREPEND_WWW = not DEBUG
+
+# SECURITY SETTINGS FOR PROXY
+# ------------------------------------------------------------------------------
+# Honor the 'X-Forwarded-Proto' header for request.is_secure().
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Redirect all non-HTTPS requests to HTTPS.
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
 
 # Application definition
