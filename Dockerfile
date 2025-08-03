@@ -35,4 +35,4 @@ EXPOSE 8080
 # Run Gunicorn to serve the Django application
 # Gunicorn will now use the pre-migrated db.sqlite3 file that has your data
 # Add the --compress flag to enable GZIP compression for responses
-CMD ["gunicorn", "--bind", "0.0.0.0:8080", "--compress", "mainweb.wsgi:application"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8080", "mainweb.wsgi:application"]
