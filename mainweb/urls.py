@@ -6,7 +6,7 @@ from django.conf.urls.static import static # For static/media in development
 from django.views.generic.base import TemplateView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('akhil-secret-portal/', admin.site.urls),
     path('', include('persinfo.urls')), # Include your app's URLs at the root
     # You can also include them at a specific path, e.g., path('portfolio/', include('persinfo.urls')),
 ]
