@@ -17,7 +17,7 @@
     <title>{% block title %}Akhil Karwal's Portfolio{% endblock %}</title>
 
     <!-- SEO & Social Sharing Meta Tags -->
-    <meta name="description" content="{% block description %}Welcome to the personal portfolio of Akhil Karwal, a passionate developer. Discover my projects and skills.{% endblock %}">
+    <meta name="description" content="{% block meta_description %}Welcome to the personal portfolio of Akhil Karwal, a passionate developer. Discover my projects and skills.{% endblock %}">
     <link rel="canonical" href="{{ request.build_absolute_uri }}">
 
     <!-- Open Graph / Facebook -->
@@ -162,13 +162,5 @@
         });
     </script>
 
-    <!-- Google Analytics 4 -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3KEMX58YYS"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-3KEMX58YYS');
-    </script>
 </body>
 </html>

@@ -22,13 +22,10 @@ DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 if DEBUG:
     ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 else:
-    # When DEBUG is False, you MUST add your domain names here.
-    ALLOWED_HOSTS = [
-        'website-932534087542.asia-southeast1.run.app',
-        'website-xvhbgr5zoq-as.a.run.app',
-        'akhilkarwal.com',
-        'www.akhilkarwal.com',
-    ]
+    # On Cloud Run, ALLOWED_HOSTS can safely be set to '*' as the load balancer
+    # handles routing and security. This ensures health checks and revision-specific
+    # URLs succeed.
+    ALLOWED_HOSTS = ['*']
 
 # Redirect non-WWW to WWW for SEO and consistency.
 # This is handled by Django's CommonMiddleware and only works when DEBUG=False.
@@ -165,12 +162,9 @@ SITE_ID = 1 # This tells Django which Site object to use by default
 # CSRF Configuration for Production
 # This is crucial when DEBUG is False and you're deploying to a custom domain/Cloud Run URL
 CSRF_TRUSTED_ORIGINS = [
-    'https://website-932534087542.asia-southeast1.run.app',
-    'https://website-xvhbgr5zoq-as.a.run.app',
+    'https://*.run.app',  # Safe wildcard for Cloud Run revisions
     'https://akhilkarwal.com',
     'https://www.akhilkarwal.com',
-    '0.0.0.0'
-    # For local development
     'http://localhost:8000',
     'http://127.0.0.1:8000',
 ]
