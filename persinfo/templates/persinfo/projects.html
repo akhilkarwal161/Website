@@ -1,6 +1,6 @@
 {% extends 'persinfo/base.html' %}
 
-{% block meta_description %}A collection of all projects by Akhil Karwal. Browse through various web applications and see the technologies used.{% endblock %}
+{% block meta_description %}Browse all projects by Akhil Karwal — a Python and Django developer. Explore web apps, AI tools, and automation projects built with Django, Flask, Docker, Playwright, and Selenium. View live demos and source code on GitHub.{% endblock %}
 
 {% block content %}
     <section class="section">
@@ -12,10 +12,10 @@
                     <p>{{ project.description|truncatechars:150 }}</p>
                     <p>Technologies: {{ project.technologies }}</p>
                     {% if project.github_link %}
-                        <a href="{{ project.github_link }}" target="_blank">GitHub</a>
+                        <a href="{{ project.github_link }}" target="_blank" rel="noopener noreferrer">GitHub</a>
                     {% endif %}
                     {% if project.live_link %}
-                        <a href="{{ project.live_link }}" target="_blank">Live Demo</a>
+                        <a href="{{ project.live_link }}" target="_blank" rel="noopener noreferrer">Live Demo</a>
                     {% endif %}
                 </div>
             {% empty %}

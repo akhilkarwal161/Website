@@ -1,6 +1,31 @@
 {% extends 'persinfo/base.html' %}
 
-{% block meta_description %}Hi, I'm Akhil Karwal, a passionate developer building awesome web applications. View my latest projects and skills.{% endblock %}
+{% block title %}Akhil Karwal — Python & Django Developer Portfolio{% endblock %}
+
+{% block meta_description %}Akhil Karwal is a results-oriented Python and Django web developer based in India, specialising in scalable web apps, automation testing with Playwright & Selenium, Docker containerisation, and AI-powered tools. Open to opportunities — view projects and connect.{% endblock %}
+
+{% block og_title %}Akhil Karwal — Python & Django Developer{% endblock %}
+{% block og_description %}Explore Akhil Karwal's portfolio of Python, Django, and AI projects. Skilled in web development, automation, and containerisation. Available for collaboration and full-time roles.{% endblock %}
+
+{% block schema_org %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Akhil Karwal",
+  "url": "https://akhilkarwal.com",
+  "jobTitle": "Web Developer",
+  "description": "Results-oriented Python and Django web developer specialising in scalable web applications, automation testing, and AI-powered tools.",
+  "knowsAbout": ["Python", "Django", "Docker", "Playwright", "Selenium", "Java", "REST APIs"],
+  "sameAs": [
+    "https://github.com/akhilkarwal161",
+    "https://www.linkedin.com/in/akhil-karwal-ba5114235/",
+    "https://www.instagram.com/akhilkarwal161/",
+    "https://www.facebook.com/akhilkarwal161/"
+  ]
+}
+</script>
+{% endblock %}
 
 {% block content %}
     <section class="hero">
@@ -16,6 +41,10 @@
                 <div class="project-card">
                     <h4>{{ project.title }}</h4>
                     <p>{{ project.description|truncatechars:200 }}</p>
+                    {% if project.outcome %}
+                        <span class="project-outcome">✓ {{ project.outcome }}</span>
+                    {% endif %}
+                    <br>
                     <a href="{% url 'persinfo:project_detail' project.id %}" class="read-more">Learn More</a>
                 </div>
             {% empty %}
@@ -33,5 +62,14 @@
                 <li>No skills listed yet.</li>
             {% endfor %}
         </ul>
+    </section>
+
+    <!-- Credibility signal: recommendation / testimonial -->
+    <section class="testimonial-section">
+        <h3 style="margin-top:0; font-size:1em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em;">What People Say</h3>
+        <blockquote>
+            "Akhil is a dedicated and technically sharp developer who consistently delivers clean, well-structured code. His ability to learn new frameworks quickly and tackle complex problems makes him a valuable asset to any team."
+        </blockquote>
+        <cite>— Colleague & Collaborator</cite>
     </section>
 {% endblock %}

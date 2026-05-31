@@ -4,6 +4,7 @@
       "id": 1,
       "title": "Libsys",
       "description": "LibSys is a library management system built with Django (Python). It allows for the efficient tracking of books and members, focusing on core lending functions: borrowing and returning. This web-based application simplifies library operations by providing a straightforward interface for managing resource availability and member loans.",
+      "outcome": "Reduced book-tracking time by automating member loans and returns",
       "technologies": "Django,Python,Rest-api",
       "github_link": "https://github.com/akhilkarwal161/LibSys",
       "live_link": "https://libsys-xvhbgr5zoq-as.a.run.app"
@@ -12,6 +13,7 @@
       "id": 2,
       "title": "Credit Card Advisor",
       "description": "This Credit Card Advisor is an AI-powered conversational agent designed to help users find the best-fit credit cards based on their financial profile and spending habits. Built with Flask for the backend and a LangChain agent, it guides users through a series of questions to collect necessary information (monthly income, spending habits, preferred benefits, existing cards, and credit score), and then recommends suitable credit cards from a simulated database.",
+      "outcome": "Delivers personalised credit card recommendations via AI-powered conversation",
       "technologies": "Python,JavaScript",
       "github_link": "https://github.com/akhilkarwal161/credit_card_advisor",
       "live_link": "https://credit-card-advisor-xvhbgr5zoq-em.a.run.app"

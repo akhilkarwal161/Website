@@ -55,6 +55,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'persinfo.middleware.WwwRedirectMiddleware',  # SEO: 301 redirect www → non-www
     'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.security.SecurityMiddleware',
     # IMPORTANT: Add this for serving static files in production

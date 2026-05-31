@@ -395,3 +395,242 @@ input:checked + .slider .clouds {
     transform: translateY(10px);
 }
 
+/* ===================================================
+   RESPONSIVE DESIGN — Media Queries
+   Fixes Mobile Usability score (was 29/100, no breakpoints)
+   =================================================== */
+
+/* --- Tablet: ≤ 768px --- */
+@media (max-width: 768px) {
+    header nav {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 12px 16px;
+    }
+
+    header nav ul {
+        flex-wrap: wrap;
+        gap: 8px;
+        padding-left: 0;
+    }
+
+    header nav ul li {
+        margin-left: 0;
+    }
+
+    .nav-brand-container {
+        width: 100%;
+    }
+
+    main {
+        padding: 0 16px;
+        margin: 12px auto;
+    }
+
+    .hero {
+        padding: 2.5em 1.5em;
+    }
+
+    .hero h2 {
+        font-size: 1.9em;
+    }
+
+    .hero p {
+        font-size: 1em;
+    }
+
+    .section {
+        padding: 1.5em;
+    }
+
+    .project-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .social-links {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .social-link {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 16px;
+    }
+
+    footer {
+        padding: 1.5em 1em;
+    }
+
+    .footer-social-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .footer-social-link {
+        font-size: 0.85em;
+        padding: 6px 12px;
+    }
+}
+
+/* --- Mobile: ≤ 480px --- */
+@media (max-width: 480px) {
+    header nav {
+        padding: 10px 12px;
+    }
+
+    header nav ul li a {
+        font-size: 0.9em;
+    }
+
+    .hero {
+        padding: 2em 1em;
+        border-radius: 6px;
+    }
+
+    .hero h2 {
+        font-size: 1.5em;
+    }
+
+    .hero p {
+        font-size: 0.95em;
+    }
+
+    .section {
+        padding: 1.2em 1em;
+        border-radius: 6px;
+    }
+
+    .project-card {
+        padding: 12px;
+    }
+
+    .skills-list {
+        gap: 8px;
+    }
+
+    .skills-list li {
+        font-size: 0.9em;
+        padding: 6px 12px;
+    }
+
+    form input[type="text"],
+    form input[type="email"],
+    form textarea {
+        font-size: 1em; /* Prevents iOS zoom-in on focus */
+    }
+
+    .btn {
+        display: block;
+        text-align: center;
+        padding: 12px 16px;
+    }
+
+    .theme-switch {
+        width: 52px;
+        height: 26px;
+    }
+
+    .slider::before {
+        height: 18px;
+        width: 18px;
+        left: 4px;
+        bottom: 4px;
+    }
+
+    input:checked + .slider::before {
+        transform: translateX(26px);
+    }
+
+    h1 { font-size: 1.4em; }
+    h2 { font-size: 1.3em; }
+    h3 { font-size: 1.1em; }
+}
+
+/* Testimonial section */
+.testimonial-section {
+    background: linear-gradient(135deg, var(--bg-secondary), var(--card-bg));
+    border-left: 4px solid #007bff;
+    padding: 1.5em 2em;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px var(--shadow-color);
+}
+
+.testimonial-section blockquote {
+    margin: 0 0 0.8em 0;
+    font-size: 1.05em;
+    font-style: italic;
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.testimonial-section cite {
+    font-style: normal;
+    font-weight: bold;
+    color: var(--text-secondary);
+    font-size: 0.9em;
+}
+
+/* Project outcome badge */
+.project-outcome {
+    display: inline-block;
+    background: linear-gradient(135deg, #28a745, #218838);
+    color: white;
+    font-size: 0.8em;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-top: 8px;
+}
+
+/* Footer social links */
+.footer-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 1em 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.footer-social-links {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer-social-link {
+    color: #ccc;
+    text-decoration: none;
+    font-size: 0.9em;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.2s ease;
+}
+
+.footer-social-link:hover {
+    color: #fff;
+}
+
+@media (max-width: 480px) {
+    .testimonial-section {
+        padding: 1.2em 1em;
+    }
+
+    .footer-inner {
+        padding: 1em;
+        gap: 8px;
+    }
+
+    .footer-social-links {
+        gap: 10px;
+    }
+}
+

@@ -39,12 +39,19 @@
             }
         } catch(e) {}
     </script>
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="{% static 'images/favicons/favicon.svg' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicons/favicon.ico' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicons/apple-touch-icon.png' %}">
+    <link rel="manifest" href="{% static 'site.webmanifest' %}">
+
+    <!-- Font Awesome — non-blocking (fixes render-blocking resources warning) -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
     {% compress css %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     {% endcompress %}
-    {# Add other CSS links here #}
 </head>
 <body>
     <header>
@@ -74,7 +81,23 @@
     </main>
 
     <footer>
-        <p>&copy; {% now "Y" %} Akhil Karwal. All rights reserved.</p>
+        <div class="footer-inner">
+            <div class="footer-social-links">
+                <a href="https://github.com/akhilkarwal161" target="_blank" rel="noopener noreferrer" class="footer-social-link">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/akhil-karwal-ba5114235/" target="_blank" rel="noopener noreferrer" class="footer-social-link">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="https://www.instagram.com/akhilkarwal161/" target="_blank" rel="noopener noreferrer" class="footer-social-link">
+                    <i class="fab fa-instagram"></i> Instagram
+                </a>
+                <a href="https://www.facebook.com/akhilkarwal161/" target="_blank" rel="noopener noreferrer" class="footer-social-link">
+                    <i class="fab fa-facebook-f"></i> Facebook
+                </a>
+            </div>
+            <p>&copy; {% now "Y" %} Akhil Karwal. All rights reserved.</p>
+        </div>
     </footer>
 
     {% compress js %}
@@ -128,6 +151,16 @@
             document.documentElement.setAttribute('data-theme', target);
             localStorage.setItem('theme', target);
         });
+    </script>
+
+    <!-- Google Analytics 4 — replace G-XXXXXXXXXX with your Measurement ID -->
+    <!-- To get your ID: analytics.google.com → Admin → Data Streams → Web -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
     </script>
 </body>
 </html>
