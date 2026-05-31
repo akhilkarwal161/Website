@@ -29,10 +29,10 @@
     },
     {
       "id": 4,
-      "title": "Epic Games Free Game Auto-Fetcher",
-      "description": "An automated browser-automation bot built in Python utilizing Playwright. Automatically logs in, authenticates bypasses, checks the Epic Games Store weekly for free promotional titles, claims them, and dispatches automated success notifications via Telegram webhook.",
-      "outcome": "Automated promotional claim workflows with headless browser state preservation",
-      "technologies": "Python,Playwright,Telegram API,Docker",
+      "title": "Epic & Steam Games Daily Auto-Alert Bot",
+      "description": "A daily automated alerting pipeline running on GitHub Actions. Dynamically queries Epic Games Store APIs for free promotional titles and queries the Steam API for premium game deals under ₹500 (with strict filters for DLCs, demos, and betas). Automatically generates styled Microsoft Word (.docx) reports with custom XML formatting, and delivers them along with game cards directly to WhatsApp via the Green API.",
+      "outcome": "Fully automated daily deal tracker utilizing external store APIs and instant messaging notification channels",
+      "technologies": "Python,Requests,python-docx,Green API,GitHub Actions",
       "github_link": "",
       "live_link": ""
     },
