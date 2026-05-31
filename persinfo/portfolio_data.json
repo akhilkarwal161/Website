@@ -38,10 +38,10 @@
     },
     {
       "id": 5,
-      "title": "Hackerproof Personal Portfolio",
-      "description": "The source code for this personal portfolio website. Deployed statelessly to Google Cloud Run, featuring robust custom application rate-limiting decorators (django-ratelimit), sqlite DatabaseCache sharing across parallel Gunicorn workers, and optimized Google Analytics 4 tracking.",
-      "outcome": "Deployed an ultra-secure, highly scalable, and completely zero-idle-cost serverless web presence",
-      "technologies": "Django,GCP Cloud Run,Docker,SQLite,CSS,Python",
+      "title": "Hackerproof Serverless Portfolio Website",
+      "description": "A secure, stateless personal portfolio website repository. Deployed serverlessly to GCP Cloud Run with zero idle costs. Features comprehensive Layer-7 WAF rate limiting (django-ratelimit) blocking brute-force form floods, proxy-aware client IP extraction from X-Forwarded-For load balancer headers, and a centralized DatabaseCache storing rate limits in a shared SQLite database across parallel Gunicorn workers. Includes an elegant glassmorphic 429 screen with a client-side JavaScript countdown timer.",
+      "outcome": "Architected a secure, resilient, and completely zero-maintenance serverless web presence with multi-process rate limits",
+      "technologies": "Django,GCP Cloud Run,Docker,SQLite,Ansible,CSS,Python",
       "github_link": "https://github.com/akhilkarwal161/Website",
       "live_link": "https://akhilkarwal.com"
     }

@@ -1,91 +1,58 @@
-# Akhil Karwal - Personal Portfolio
+# Hackerproof Personal Portfolio Website (GCP Cloud Run)
 
-A results-oriented and passionate personal portfolio website built with Python, Django, and containerized with Docker. This application is optimized for performance, SEO, and real-time user engagement.
+A secure, stateless, and fully optimized personal portfolio website built with Django and Python, designed for serverless container deployment on Google Cloud Platform (GCP).
 
 ## 🚀 Key Features
 
-- **Instantaneous Page Transitions**: Implements a dual-layer preloading strategy using the **Speculation Rules API** (for Chromium) and **Google Quicklink** (via IntersectionObserver) to pre-render/prefetch pages as soon as links become visible.
-- **WhatsApp Notification Integration**: Real-time alerts for contact form submissions delivered directly to the owner via **Green API**.
-- **Premium UI/UX**: Modern, responsive design featuring a custom dribbble-style animated theme toggler (Dark/Light mode), premium project cards with hover depth, and a streamlined grid layout.
-- **Production Asset Pipeline**: Integrated `django-compressor` and `WhiteNoise` for efficient minification and delivery of static assets.
-- **Search Engine Optimized**: Fully configured SEO meta tags, canonical URLs, JSON-LD Schema.org markup, and GA4 (gtag.js) analytics integration.
-- **Robust Security**: Includes honeypot field protection against spam bots and secure environment variable management.
+*   **Stateless Serverless Architecture:** Fully optimized for seamless containerized execution on **Google Cloud Run (GCP)** with zero monthly subscription or idle running costs.
+*   **Comprehensive Application Defense (Layer 7):**
+    *   IP-level rate limiting using `django-ratelimit` (strict **5 requests/minute** for form POSTs, **30-40 requests/minute** for page views).
+    *   Proxy-aware client IP extraction resolving real visitor IPs from Google Cloud Load Balancer's `X-Forwarded-For` header.
+    *   Hidden form honeypots to silently discard automated bot spam submissions.
+*   **Centralized Multi-Process Cache:** Uses Django's `DatabaseCache` backend stored in a shared SQLite database (`django_cache_table`), which is automatically created on container startup in the Dockerfile. This perfectly synchronizes rate-limiting states across all **3 parallel Gunicorn worker processes** inside the container.
+*   **Premium Glassmorphic 429 UI:** Served on rate-limit blocks with an animated shield icon and an interactive **client-side JavaScript countdown timer** that automatically unlocks navigation when the 60-second cooldown expires.
+*   **Dynamic Portfolio Pipeline:** Reads projects and skills dynamically from a lightweight JSON pipeline (`portfolio_data.json`), with smart conditional logic to completely omit source code or live demo links for **private repositories**.
+*   **Optimized Performance & SEO:** Uses `django-compressor` and Whitenoise for asset minification and static files compression, with clean sitemap URLs and optimized Google Analytics 4 tracking.
+
+---
+
+## 🏗️ Architecture
+
+```mermaid
+graph TD
+    User[Visitor Request] --> GCLB[Google Cloud Load Balancer]
+    GCLB --> CR[Google Cloud Run Container]
+    CR --> Gunicorn[Gunicorn Web Server]
+    Gunicorn --> Workers[3x Parallel Worker Processes]
+    Workers --> Middleware[Rate Limit & SSL Middleware]
+    Middleware --> DB[SQLite Shared Database Cache]
+    Middleware --> Views[Django Views & JSON Pipeline]
+    Views --> GA4[Google Analytics 4]
+```
+
+---
 
 ## 🛠️ Tech Stack
 
-- **Framework**: [Django 5.2.4](https://www.djangoproject.com/)
-- **API Communication**: [Requests](https://requests.readthedocs.io/)
-- **Server**: [Gunicorn](https://gunicorn.org/) (Multi-threaded configuration)
-- **Containerization**: [Docker](https://www.docker.com/) (Alpine-based for small footprint)
-- **Deployment**: [Google Cloud Run](https://cloud.google.com/run)
-- **Frontend**: Vanilla CSS (Modern CSS variables, Flexbox, Grid) & Vanilla JavaScript
+*   **Framework:** Django (Python)
+*   **Server:** Gunicorn (WSGI)
+*   **Deployment:** Google Cloud Run (Serverless Docker Container)
+*   **Asset Management:** django-compressor + Whitenoise
+*   **Database & Cache:** SQLite3 (DatabaseCache)
+*   **Analytics:** Google Analytics 4 (gtag.js)
 
-## 📁 Repository Structure
+---
 
-```
-F:\REpo\Website
-├── mainweb/            # Root Django configuration (settings, urls, wsgi)
-├── persinfo/           # Primary application logic (models, views, templates)
-│   ├── static/         # Frontend assets (CSS/JS)
-│   └── templates/      # Custom HTML components
-├── templates/          # Root layout and error pages (404/500)
-├── Dockerfile          # Production container build instructions
-├── requirements.txt    # Python package dependencies
-└── CODEBASE_INDEX.md   # Detailed architectural map
-```
+## 📦 Container Setup & Deployment
 
-## ⚙️ Installation & Local Setup
+The site is packaged using a highly optimized Python Docker container:
 
-### Prerequisites
-- Python 3.9+
-- Docker (optional, for containerized run)
+```dockerfile
+# Collect static files & compile assets
+RUN python manage.py collectstatic --noinput && python manage.py compress
 
-### Standard Setup
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/akhilkarwal161/Website.git
-   cd Website
-   ```
-
-2. **Install dependencies**:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-3. **Run Migrations**:
-   ```bash
-   python manage.py migrate
-   ```
-
-4. **Start the Development Server**:
-   ```bash
-   python manage.py runserver
-   ```
-
-### Docker Setup
-```bash
-docker build -t website-portfolio .
-docker run -p 8080:8080 website-portfolio
+# Container Entrypoint (Automates Migrations and Cache Table Setup)
+CMD ["sh", "-c", "python manage.py migrate && python manage.py createcachetable && gunicorn --bind 0.0.0.0:8080 --workers 3 --threads 2 --timeout 60 mainweb.wsgi:application"]
 ```
 
-## ☁️ Deployment (Google Cloud Run)
-
-The application is built to run on Cloud Run. Ensure the following environment variables are set in your service configuration:
-
-- `DJANGO_DEBUG`: `False`
-- `SECRET_KEY`: Your Django secret key
-- `GREEN_API_ID`: Your Green API instance ID
-- `GREEN_API_TOKEN`: Your Green API token
-- `TARGET_PHONE`: WhatsApp number for notifications (e.g., `919310433121`)
-
-## 📄 Documentation
-
-For more detailed technical insights, refer to:
-- [WHAT_HAVE_WE_ACHIEVED.md](./WHAT_HAVE_WE_ACHIEVED.md): Progress ledger and recent updates.
-- [CURRENT_CONTEXT.md](./CURRENT_CONTEXT.md): Active development goals and blockers.
-- [CODEBASE_INDEX.md](./CODEBASE_INDEX.md): Component-level breakdown.
-
-## 🤝 Contact
-
-**Akhil Karwal**  
-[GitHub](https://github.com/akhilkarwal161) | [LinkedIn](https://www.linkedin.com/in/akhil-karwal-ba5114235/) | [Facebook](https://www.facebook.com/akhilkarwal161/)
+Deploying updates is completely automated via GitHub Actions on every push to the `main` branch.
