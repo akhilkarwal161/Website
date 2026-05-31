@@ -5,6 +5,7 @@ import logging
 import requests
 from django.shortcuts import render, Http404
 from django.conf import settings
+from django_ratelimit.decorators import ratelimit
 from .forms import ContactForm
 
 logger = logging.getLogger(__name__)
@@ -53,6 +54,7 @@ def load_portfolio_data():
         logger.error("Failed to load portfolio JSON: %s", e)
         return {'projects': [], 'skills': []}
 
+@ratelimit(key='ip', rate='40/m', block=True)
 def home_view(request):
     data = load_portfolio_data()
     # Fetch first 3 projects
@@ -68,6 +70,7 @@ def home_view(request):
     }
     return render(request, 'persinfo/home.html', context)
 
+@ratelimit(key='ip', rate='40/m', block=True)
 def projects_view(request):
     data = load_portfolio_data()
     all_projects = data.get('projects', [])
@@ -77,6 +80,8 @@ def projects_view(request):
     }
     return render(request, 'persinfo/projects.html', context)
 
+@ratelimit(key='ip', rate='30/m', block=True)
+@ratelimit(key='ip', rate='5/m', method='POST', block=True)
 def contact_view(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -117,6 +122,7 @@ def contact_view(request):
             })
     return render(request, 'persinfo/contact.html', {'page_title': 'Contact - Akhil Karwal Portfolio'})
 
+@ratelimit(key='ip', rate='40/m', block=True)
 def project_detail(request, project_id):
     data = load_portfolio_data()
     projects = data.get('projects', [])

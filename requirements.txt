@@ -6,6 +6,7 @@ gunicorn==23.0.0
 djangorestframework==3.16.0
 django-filter==25.1
 Pillow==11.3.0
+django-ratelimit==4.1.0
 
 # Static Files and Performance
 whitenoise==6.9.0

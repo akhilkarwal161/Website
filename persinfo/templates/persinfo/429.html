@@ -1,0 +1,94 @@
+{% extends 'base.html' %} {% load static %} {% block title %}Too Many Requests (429) - Akhil Karwal{% endblock %} {% block content %}
+<section class="section" style="display: flex; justify-content: center; align-items: center; min-height: 60vh; padding: 2rem 1rem;">
+  <div class="glass-card" style="
+    max-width: 500px;
+    width: 100%;
+    padding: 3rem 2rem;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 8px 32px var(--shadow-color);
+    text-align: center;
+    transition: all 0.3s ease;
+  ">
+    <!-- Animated Alert Shield Icon -->
+    <div class="shield-container" style="margin-bottom: 1.5rem;">
+      <svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation: pulse 2s infinite ease-in-out;">
+        <path d="M12 22C12 22 20 18 20 12V5L12 2L4 5V12C4 12 4 22 12 22Z" stroke="#ffc107" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="rgba(255, 193, 7, 0.1)"/>
+        <path d="M12 8V12" stroke="#ffc107" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12 16H12.01" stroke="#ffc107" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <h1 style="font-size: 2.5rem; margin-top: 0; margin-bottom: 0.5rem; color: #ffc107;">429</h1>
+    <h2 style="margin-top: 0; margin-bottom: 1rem; font-weight: 600;">Too Many Requests</h2>
+    
+    <p style="font-size: 1.1rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: 2rem;">
+      Whoa there, partner! You are requesting pages too quickly. Our system has rate-limited your IP temporarily to prevent spam and resource drain.
+    </p>
+
+    <!-- Client-side Countdown Widget -->
+    <div style="
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+    ">
+      <span style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-secondary); display: block; margin-bottom: 0.25rem;">Please Wait</span>
+      <span id="countdown-timer" style="font-size: 2rem; font-weight: bold; color: var(--text-primary);">60</span>
+      <span style="font-size: 0.9rem; color: var(--text-secondary); display: block; margin-top: 0.25rem;">seconds before retrying</span>
+    </div>
+
+    <a href="{% url 'persinfo:home' %}" id="retry-button" class="btn" style="
+      display: inline-block;
+      width: 100%;
+      padding: 12px 24px;
+      background-color: var(--border-color);
+      color: var(--text-primary);
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      pointer-events: none;
+      opacity: 0.6;
+    ">
+      Return to Home
+    </a>
+  </div>
+</section>
+
+<!-- Pulse Animation Style & Countdown Logic -->
+<style>
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); filter: drop-shadow(0 0 8px rgba(255, 193, 7, 0.4)); }
+    100% { transform: scale(1); }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    let timeLeft = 60;
+    const timerElement = document.getElementById('countdown-timer');
+    const retryButton = document.getElementById('retry-button');
+
+    const countdown = setInterval(() => {
+      timeLeft--;
+      timerElement.textContent = timeLeft;
+
+      if (timeLeft <= 0) {
+        clearInterval(countdown);
+        timerElement.textContent = "Ready!";
+        retryButton.style.backgroundColor = "#28a745";
+        retryButton.style.color = "white";
+        retryButton.style.pointerEvents = "auto";
+        retryButton.style.opacity = "1";
+        retryButton.textContent = "Try Again Now";
+      }
+    }, 1000);
+  });
+</script>
+{% endblock %}

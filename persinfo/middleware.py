@@ -29,3 +29,28 @@ class WwwRedirectMiddleware:
             return HttpResponsePermanentRedirect(redirect_url)
 
         return self.get_response(request)
+
+
+class RateLimitMiddleware:
+    """
+    Catches Ratelimited exceptions from django-ratelimit
+    and returns a beautifully styled 429 Too Many Requests response.
+    """
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        return self.get_response(request)
+
+    def process_exception(self, request, exception):
+        from django_ratelimit.exceptions import Ratelimited
+        from django.shortcuts import render
+
+        if isinstance(exception, Ratelimited):
+            # Render a premium 429 error template with a 429 status code
+            response = render(request, 'persinfo/429.html', status=429)
+            response.status_code = 429
+            return response
+        return None
+
