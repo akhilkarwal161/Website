@@ -191,8 +191,8 @@ SECURE_HSTS_PRELOAD = not DEBUG
 # https://docs.djangoproject.com/en/5.2/topics/cache/
 CACHES = {
     "default": {
-        "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
-        "LOCATION": BASE_DIR / "django_cache",
+        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
+        "LOCATION": "portfolio-unique-cache",
     }
 }
 

@@ -54,7 +54,14 @@ def load_portfolio_data():
         logger.error("Failed to load portfolio JSON: %s", e)
         return {'projects': [], 'skills': []}
 
-@ratelimit(key='ip', rate='40/m', block=True)
+def get_client_ip(group, request):
+    """Accurately extracts client IP behind proxies/load balancers (e.g. Cloud Run X-Forwarded-For) with local fallback."""
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        return x_forwarded_for.split(',')[0].strip()
+    return request.META.get('REMOTE_ADDR', '127.0.0.1')
+
+@ratelimit(key=get_client_ip, rate='40/m', block=True)
 def home_view(request):
     data = load_portfolio_data()
     # Fetch first 3 projects
@@ -70,7 +77,7 @@ def home_view(request):
     }
     return render(request, 'persinfo/home.html', context)
 
-@ratelimit(key='ip', rate='40/m', block=True)
+@ratelimit(key=get_client_ip, rate='40/m', block=True)
 def projects_view(request):
     data = load_portfolio_data()
     all_projects = data.get('projects', [])
@@ -80,8 +87,8 @@ def projects_view(request):
     }
     return render(request, 'persinfo/projects.html', context)
 
-@ratelimit(key='ip', rate='30/m', block=True)
-@ratelimit(key='ip', rate='5/m', method='POST', block=True)
+@ratelimit(key=get_client_ip, rate='30/m', block=True)
+@ratelimit(key=get_client_ip, rate='5/m', method='POST', block=True)
 def contact_view(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -122,7 +129,7 @@ def contact_view(request):
             })
     return render(request, 'persinfo/contact.html', {'page_title': 'Contact - Akhil Karwal Portfolio'})
 
-@ratelimit(key='ip', rate='40/m', block=True)
+@ratelimit(key=get_client_ip, rate='40/m', block=True)
 def project_detail(request, project_id):
     data = load_portfolio_data()
     projects = data.get('projects', [])
