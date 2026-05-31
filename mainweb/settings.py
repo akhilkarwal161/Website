@@ -199,7 +199,7 @@ CACHES = {
 # Cache middleware settings
 CACHE_MIDDLEWARE_ALIAS = "default"  # Which cache to use.
 CACHE_MIDDLEWARE_SECONDS = 900  # 15 minutes.
-CACHE_MIDDLEWARE_KEY_PREFIX = "portfolio"
+CACHE_MIDDLEWARE_KEY_PREFIX = "portfolio_v3"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
