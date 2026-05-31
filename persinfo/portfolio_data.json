@@ -17,6 +17,33 @@
       "technologies": "Python,JavaScript",
       "github_link": "https://github.com/akhilkarwal161/credit_card_advisor",
       "live_link": "https://credit-card-advisor-xvhbgr5zoq-em.a.run.app"
+    },
+    {
+      "id": 3,
+      "title": "Job AI Bot & Automated Matcher",
+      "description": "An AI-powered job search automation system. Built with Playwright for headless job scraping across major career sites. Integrates Gemini AI APIs to summarize job listings, score them against a resume profile, categorize requirements, and dispatch automated email summaries via SMTP.",
+      "outcome": "Automated recruitment discovery using headless browser orchestration and LLM classification",
+      "technologies": "Python,Playwright,Gemini API,SQLite,SMTP",
+      "github_link": "",
+      "live_link": ""
+    },
+    {
+      "id": 4,
+      "title": "DevOps & AWS Infrastructure Toolkit",
+      "description": "A comprehensive toolkit of automated infrastructure configurations. Includes Jenkins CI/CD pipelines, AWS CloudFormation & CDK templates, API Gateway integrations, AWS Beanstalk orchestration, and Kinesis real-time data streaming.",
+      "outcome": "Streamlined multi-environment deployments using modern DevOps practices",
+      "technologies": "Terraform,Ansible,Jenkins,CloudFormation,AWS CDK,Python",
+      "github_link": "",
+      "live_link": ""
+    },
+    {
+      "id": 5,
+      "title": "Containerized Django AWS Deployment",
+      "description": "A production-ready Django application packaged with Docker and configured for highly scalable cloud architectures. Includes AWS Infrastructure as Code templates and Ansible automation playbooks to execute seamless cloud deployments and configuration management.",
+      "outcome": "Implemented reliable production deployment orchestration with Ansible and Docker containerization",
+      "technologies": "Django,Docker,Ansible,AWS,SQLite",
+      "github_link": "",
+      "live_link": ""
     }
   ],
   "skills": [
