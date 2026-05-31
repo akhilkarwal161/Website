@@ -49,6 +49,14 @@ def contact_view(request):
         if form.is_valid():
             message_obj = form.save()
             
+            # Send WhatsApp Notification via Green API
+            send_whatsapp_notification(
+                message_obj.name, 
+                message_obj.email, 
+                message_obj.subject, 
+                message_obj.message
+            )
+            
             # Print to standard output so messages are permanently stored in Google Cloud Logging (100% Free!)
             print(f"\n[CONTACT_MESSAGE] Received submission:")
             print(f"Name: {message_obj.name}")
@@ -77,6 +85,32 @@ def contact_view(request):
 
 def project_detail(request, project_id):
     data = load_portfolio_data()
+    projects = data.get('projects', [])
+    
+    # Find active project by ID
+    project = None
+    project_idx = -1
+    for idx, p in enumerate(projects):
+        if int(p.get('id', 0)) == int(project_id):
+            project = p
+            project_idx = idx
+            break
+            
+    if not project:
+        raise Http404("Project not found")
+        
+    # Get previous and next projects based on list navigation (safe bounds check)
+    prev_project = projects[project_idx - 1] if project_idx > 0 else None
+    next_project = projects[project_idx + 1] if project_idx < len(projects) - 1 else None
+    
+    context = {
+        'project': project,
+        'prev_project': prev_project,
+        'next_project': next_project,
+        'page_title': f"{project.get('title')} - Project Details"
+    }
+    return render(request, 'persinfo/project.html', context)
+folio_data()
     projects = data.get('projects', [])
     
     # Find active project by ID
