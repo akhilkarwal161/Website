@@ -20,10 +20,10 @@
     },
     {
       "id": 3,
-      "title": "Automated AWS EC2 Django Deployer",
-      "description": "An automated Infrastructure as Code (IaC) and configuration management system (terraform_project). Uses Terraform to dynamically provision an AWS EC2 instance with Ubuntu 22.04 LTS, orchestrate SSH deployment keys, and configure Security Group firewall rules. Integrates Ansible playbooks to automate Docker setups and deploy containerized Django applications seamlessly.",
-      "outcome": "Fully automated production-ready cloud deployments using Terraform and Ansible",
-      "technologies": "Terraform,Ansible,AWS,Docker,Django",
+      "title": "Automated GCP Cloud Run Django Deployer",
+      "description": "An automated Infrastructure as Code (IaC) and configuration management setup (terraform_project). Uses Terraform to securely provision Google Cloud Platform (GCP) resources—including Google Cloud Run for serverless container execution, Google Artifact Registry for Docker image storage, and secure IAM service accounts. Integrates Ansible playbooks for seamless continuous orchestration of containerized Django app deployments.",
+      "outcome": "Implemented reliable, stateless production serverless deployments on Google Cloud Run using Terraform and Ansible",
+      "technologies": "Terraform,Ansible,GCP,Google Cloud Run,Docker,Django",
       "github_link": "",
       "live_link": ""
     }
