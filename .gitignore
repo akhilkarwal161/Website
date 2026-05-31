@@ -20,17 +20,72 @@ parts/
 sdist/
 var/
 wheels/
+share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
 
+# PyInstaller
+*.manifest
+*.spec
 
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
 
-# Django cache directory
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# Django runtime configurations & data files
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+mediafiles/
+staticfiles/
 django_cache/
 
-# Environment variables file
-.env
+# Flask stuff
+instance/
+.webassets-cache
+
+# Scrapy stuff
+.scrapy
+
+# Sphinx documentation
+docs/_build/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# venv
+# Use common names for Python virtual environments
+.venv/
+venv/
+ENV/
+env/
+website/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
 
 # IDE and editor files
 .idea/
@@ -39,10 +94,17 @@ django_cache/
 *~
 .qodo/
 
-# Log files
-*.log
+# Environment variables and secrets
+.env
+.env.*
+.secrets
+secrets.json
 
 # OS-generated files
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
-

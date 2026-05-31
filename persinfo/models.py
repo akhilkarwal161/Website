@@ -8,7 +8,7 @@ class Project(models.Model):
     technologies = models.CharField(max_length=255, help_text="Comma-separated list of technologies used")
     github_link = models.URLField(blank=True, null=True)
     live_link = models.URLField(blank=True, null=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True, db_index=True)
 
     def __str__(self):
         return self.title

@@ -11,7 +11,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-zcmcl$f#xbkwj49!l#%b9q#zib(u#$0%8g^#xeg27uv*im2)zd'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-zcmcl$f#xbkwj49!l#%b9q#zib(u#$0%8g^#xeg27uv*im2)zd')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # Set DEBUG to True for local development, and False for production.
@@ -209,7 +209,7 @@ CACHE_MIDDLEWARE_KEY_PREFIX = "portfolio"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-WHITENOISE_MAX_AGE = 60 * 60  # 1 hour
+WHITENOISE_MAX_AGE = 31536000  # 1 year (highly optimized for hashed assets)
 
 # Django Compressor settings
 COMPRESS_ENABLED = True

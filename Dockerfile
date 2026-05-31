@@ -22,17 +22,11 @@ ENV PYTHONUNBUFFERED=1
 # and optimizations like PREPEND_WWW.
 ENV DJANGO_DEBUG=False
 
-# Ensure the database file exists and migrations are applied
-# The migrate command will use the db.sqlite3 file that was copied in
-RUN python manage.py migrate
-
 # Collect static files
 RUN python manage.py collectstatic --noinput
 
 # Expose the port for the application
 EXPOSE 8080
 
-# Run Gunicorn to serve the Django application
-# Gunicorn will now use the pre-migrated db.sqlite3 file that has your data
-# Add the --compress flag to enable GZIP compression for responses
-CMD ["gunicorn", "--bind", "0.0.0.0:8080", "mainweb.wsgi:application"]
+# Run Gunicorn to serve the Django application, running migrations on startup and setting workers/threads
+CMD ["sh", "-c", "python manage.py migrate && gunicorn --bind 0.0.0.0:8080 --workers 3 --threads 2 --timeout 60 mainweb.wsgi:application"]

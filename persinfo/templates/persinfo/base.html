@@ -29,7 +29,9 @@
     }
     </script>
     {% endblock %}
+    {% compress css %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% endcompress %}
     {# Add other CSS links here #}
 </head>
 <body>
@@ -54,7 +56,9 @@
         <p>&copy; {% now "Y" %} Akhil Karwal. All rights reserved.</p>
     </footer>
 
+    {% compress js %}
     <script src="{% static 'js/main.js' %}"></script>
+    {% endcompress %}
     {# Add other JavaScript links here #}
 </body>
 </html>
