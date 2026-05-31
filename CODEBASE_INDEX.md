@@ -24,9 +24,9 @@
 |  |     |      |                                    |  |
 |  |     v      v                                    |  |
 |  |  +----+  +------------+                         |  |
-|  |  | DB |  | File Cache |                         |  |
-|  |  |    |  | (django_   |                         |  |
-|  |  |    |  |  cache)    |                         |  |
+|  |  | DB |  | DB Cache   |                         |  |
+|  |  |    |  | (shared    |                         |  |
+|  |  |    |  |  SQLite3)  |                         |  |
 |  |  +----+  +------------+                         |  |
 |  +-------------------------------------------------+  |
 +-------------------------------------------------------+
@@ -50,6 +50,7 @@ F:\REpo\Website
 │   ├── admin.py
 │   ├── apps.py
 │   ├── models.py
+│   ├── middleware.py
 │   ├── urls.py
 │   ├── views.py
 │   ├── static/
@@ -61,7 +62,8 @@ F:\REpo\Website
 │       ├── projects.html
 │       ├── project.html
 │       ├── project_detail.html
-│       └── contact.html
+│       ├── contact.html
+│       └── 429.html
 └── templates/
     ├── base.html
     ├── 404.html
@@ -73,12 +75,13 @@ F:\REpo\Website
 
 | File/Directory | Primary Responsibility | Main Dependencies |
 | :--- | :--- | :--- |
-| `mainweb/settings.py` | App configuration, security, caching, assets | Django, compressor, whitenoise |
-| `mainweb/urls.py` | Root URLs, 404/500 custom error routing, robots.txt | Django, `persinfo.urls` |
+| `mainweb/settings.py` | App configuration, security, DB cache, assets | Django, compressor, whitenoise |
+| `mainweb/urls.py` | Root URLs, 404/500/429 custom error routing | Django, `persinfo.urls` |
 | `persinfo/models.py` | DB Schemas (Project, Skill, ContactMessage) | Django models |
-| `persinfo/views.py` | Page renders, WhatsApp notifications (Green API) | Django, models, requests |
+| `persinfo/middleware.py` | www-redirection and proxy-aware RateLimit enforcement | Django middleware |
+| `persinfo/views.py` | Page renders, dynamic 5-project portfolio, Green API | Django, models, requests |
 | `persinfo/urls.py` | Namespace routes (`persinfo`) | Django urls, `views.py` |
 | `persinfo/static/` | App assets (style.css, main.js) | Static file system |
-| `persinfo/templates/` | Custom HTML UI templates | Django templates |
-| `Dockerfile` | Production server build (Python Alpine + Gunicorn) | `requirements.txt` |
-| `requirements.txt` | PyPI third-party package manifest | Python, requests |
+| `persinfo/templates/` | Custom HTML UI templates & Glassmorphic 429 page | Django templates |
+| `Dockerfile` | Multi-process container entrypoint (auto-creates cache table) | `requirements.txt` |
+| `requirements.txt` | Dependency list including `requests` and `django-ratelimit` | Python, Pip |
