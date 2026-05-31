@@ -66,12 +66,39 @@
     </nav>
     {% block content %}{% endblock %}
 
-    <!--
-    JavaScript files should be placed here, just before the closing </body> tag.
-    Using the 'defer' attribute ensures they are executed after the HTML is parsed
-    and do not block page rendering.
-    Example:
-    <script src="{% static 'js/your_script.js' %}" defer></script>
-    -->
+    <!-- Dual-Layer Preloading: Speculation Rules API & Quicklink -->
+    <script type="speculationrules">
+    {
+      "prerender": [
+        {
+          "source": "document",
+          "where": {
+            "and": [
+              { "href_matches": "/*" },
+              { "not": { "href_matches": ["*.zip", "*.pdf", "*.mp4", "*.tar.gz", "*#*"] } }
+            ]
+          },
+          "eagerness": "moderate"
+        }
+      ]
+    }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js"></script>
+    <script>
+        window.addEventListener('load', () => {
+            const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+            const isSlow = conn && (conn.saveData || ['slow-2g', '2g'].includes(conn.effectiveType));
+            const supportsSpeculationRules = HTMLScriptElement.supports && HTMLScriptElement.supports('speculationrules');
+
+            if (!isSlow && !supportsSpeculationRules && window.quicklink) {
+                quicklink.listen({
+                    ignores: [
+                        uri => uri.includes('#'),
+                        uri => uri.match(/\.(zip|pdf|mp4|tar\.gz)$/i)
+                    ]
+                });
+            }
+        });
+    </script>
 </body>
 </html>

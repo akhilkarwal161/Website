@@ -74,7 +74,42 @@
     {% compress js %}
     <script src="{% static 'js/main.js' %}"></script>
     {% endcompress %}
-    {# Add other JavaScript links here #}
+
+    <!-- Dual-Layer Preloading: Speculation Rules API & Quicklink -->
+    <script type="speculationrules">
+    {
+      "prerender": [
+        {
+          "source": "document",
+          "where": {
+            "and": [
+              { "href_matches": "/*" },
+              { "not": { "href_matches": ["*.zip", "*.pdf", "*.mp4", "*.tar.gz", "*#*"] } }
+            ]
+          },
+          "eagerness": "moderate"
+        }
+      ]
+    }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js"></script>
+    <script>
+        window.addEventListener('load', () => {
+            const conn = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+            const isSlow = conn && (conn.saveData || ['slow-2g', '2g'].includes(conn.effectiveType));
+            const supportsSpeculationRules = HTMLScriptElement.supports && HTMLScriptElement.supports('speculationrules');
+
+            if (!isSlow && !supportsSpeculationRules && window.quicklink) {
+                quicklink.listen({
+                    ignores: [
+                        uri => uri.includes('#'),
+                        uri => uri.match(/\.(zip|pdf|mp4|tar\.gz)$/i)
+                    ]
+                });
+            }
+        });
+    </script>
+
     <script>
         const toggleCheckbox = document.getElementById('theme-toggle');
         
