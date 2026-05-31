@@ -13,5 +13,7 @@
 
 ## Next Steps
 
-1. **Load Testing Gunicorn Concurrency**: Use Locust or Apache Bench to verify the optimized multi-threaded Gunicorn performance under load.
-2. **Setup Cloud SQL & GCS Integration**: Add custom storage configurations to support fully stateless container scaling.
+1. **Verify WhatsApp Delivery**: Test the live contact form to confirm Green API notifications are reaching the target device.
+2. **Monitor GA4 Data Flow**: Ensure traffic events are being recorded correctly in the Google Analytics dashboard.
+3. **Load Testing Gunicorn Concurrency**: Use Locust or Apache Bench to verify the optimized multi-threaded Gunicorn performance under load.
+4. **Setup Cloud SQL & GCS Integration**: Add custom storage configurations to support fully stateless container scaling.

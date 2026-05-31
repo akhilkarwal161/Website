@@ -76,9 +76,9 @@ F:\REpo\Website
 | `mainweb/settings.py` | App configuration, security, caching, assets | Django, compressor, whitenoise |
 | `mainweb/urls.py` | Root URLs, 404/500 custom error routing, robots.txt | Django, `persinfo.urls` |
 | `persinfo/models.py` | DB Schemas (Project, Skill, ContactMessage) | Django models |
-| `persinfo/views.py` | Page renders & core application business logic | Django, models |
+| `persinfo/views.py` | Page renders, WhatsApp notifications (Green API) | Django, models, requests |
 | `persinfo/urls.py` | Namespace routes (`persinfo`) | Django urls, `views.py` |
 | `persinfo/static/` | App assets (style.css, main.js) | Static file system |
 | `persinfo/templates/` | Custom HTML UI templates | Django templates |
 | `Dockerfile` | Production server build (Python Alpine + Gunicorn) | `requirements.txt` |
-| `requirements.txt` | PyPI third-party package manifest | Python |
+| `requirements.txt` | PyPI third-party package manifest | Python, requests |
