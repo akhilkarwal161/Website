@@ -56,20 +56,12 @@
     <section class="section">
         <h3>My Skills</h3>
         <ul class="skills-list">
-            {% for skill in skills %}
-                <li>{{ skill.name }} ({{ skill.level|capfirst }})</li>
-            {% empty %}
-                <li>No skills listed yet.</li>
-            {% endfor %}
+            <li>Python</li>
+            <li>Django</li>
+            <li>HTML/CSS</li>
+            <li>Docker</li>
+            <li>Playwright/Selenium</li>
+            <li>SQL</li>
         </ul>
-    </section>
-
-    <!-- Credibility signal: recommendation / testimonial -->
-    <section class="testimonial-section">
-        <h3 style="margin-top:0; font-size:1em; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em;">What People Say</h3>
-        <blockquote>
-            "Akhil is a dedicated and technically sharp developer who consistently delivers clean, well-structured code. His ability to learn new frameworks quickly and tackle complex problems makes him a valuable asset to any team."
-        </blockquote>
-        <cite>— Colleague & Collaborator</cite>
     </section>
 {% endblock %}

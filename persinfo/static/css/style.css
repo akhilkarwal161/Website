@@ -20,26 +20,26 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
     background-color: var(--bg-primary);
     color: var(--text-primary);
     transition: background-color 0.3s ease, color 0.3s ease;
+    line-height: 1.6;
 }
 
 header {
     background-color: #333;
     color: #fff;
     padding: 1em 0;
-    text-align: center;
 }
 
 header nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 960px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -68,8 +68,8 @@ header nav ul li a {
 }
 
 main {
-    max-width: 960px;
-    margin: 20px auto;
+    max-width: 1000px;
+    margin: 40px auto;
     padding: 0 20px;
 }
 
@@ -78,56 +78,135 @@ main {
     color: #fff;
     padding: 4em 2em;
     text-align: center;
-    border-radius: 8px;
-    margin-bottom: 20px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
 }
 
 .hero h2 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
+    font-size: 2.8em;
+    margin-bottom: 15px;
 }
 
 .hero p {
     font-size: 1.2em;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .btn {
     display: inline-block;
     background-color: #28a745;
     color: #fff;
-    padding: 10px 20px;
+    padding: 12px 24px;
     text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: all 0.3s ease;
 }
 
 .btn:hover {
     background-color: #218838;
+    transform: translateY(-2px);
 }
 
 .section {
     background-color: var(--bg-secondary);
-    padding: 2em;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px var(--shadow-color);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    padding: 2.5em;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px var(--shadow-color);
 }
 
+.section h2, .section h3 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+/* Project grid and card optimizations */
 .project-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
 }
 
 .project-card {
     border: 1px solid var(--border-color);
-    padding: 15px;
-    border-radius: 8px;
-    text-align: center;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: left;
     background-color: var(--card-bg);
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px var(--shadow-color);
+    border-color: #007bff;
+}
+
+.project-card h4 {
+    margin: 0 0 12px 0;
+    font-size: 1.5em;
+}
+
+.project-card h4 a {
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.project-card h4 a:hover {
+    color: #007bff;
+}
+
+.project-card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-size: 1em;
+}
+
+.project-tech {
+    font-size: 0.9em;
+    font-weight: bold;
+    color: var(--text-secondary);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.project-links {
+    display: flex;
+    gap: 20px;
+    margin-top: auto;
+    flex-wrap: wrap;
+}
+
+.project-links a {
+    font-size: 0.95em;
+    font-weight: bold;
+    color: #007bff;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.project-links a:hover {
+    text-decoration: underline;
+}
+
+.read-more {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
 }
 
 .skills-list {
@@ -135,21 +214,27 @@ main {
     padding: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 12px;
 }
 
 .skills-list li {
     background-color: var(--card-bg);
     border: 1px solid var(--border-color);
     color: var(--text-primary);
-    padding: 8px 15px;
-    border-radius: 5px;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.skills-list li:hover {
+    border-color: #007bff;
+    background-color: var(--bg-secondary);
 }
 
 form label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
     font-weight: bold;
 }
 
@@ -157,24 +242,32 @@ form input[type="text"],
 form input[type="email"],
 form textarea {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
+    padding: 12px;
+    margin-bottom: 20px;
     border: 1px solid var(--border-color);
     background-color: var(--bg-secondary);
     color: var(--text-primary);
-    border-radius: 4px;
-    box-sizing: border-box; /* Include padding in width */
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
+}
+
+form input:focus, form textarea:focus {
+    outline: none;
+    border-color: #007bff;
 }
 
 form button {
     background-color: #007bff;
     color: white;
-    padding: 10px 20px;
+    padding: 12px 28px;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 1em;
+    font-size: 1.1em;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
 }
 
 form button:hover {
@@ -182,32 +275,64 @@ form button:hover {
 }
 
 .success {
-    color: green;
-    background-color: #e6ffe6;
-    border: 1px solid green;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 15px;
+    color: #155724;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
 }
 
 .error {
-    color: red;
-    background-color: #ffe6e6;
-    border: 1px solid red;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 15px;
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
 }
 
 footer {
     text-align: center;
-    padding: 1em 0;
-    background-color: #333;
+    padding: 3em 0;
+    background-color: #222;
     color: #fff;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
-/* Premium Social Links container and items */
+.footer-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.footer-social-links {
+    display: flex;
+    gap: 25px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer-social-link {
+    color: #bbb;
+    text-decoration: none;
+    font-size: 1em;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.footer-social-link:hover {
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* Social Links on Contact Page */
 .social-links {
     display: flex;
     flex-wrap: wrap;
@@ -219,7 +344,7 @@ footer {
 .social-link {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     padding: 12px 24px;
     border-radius: 50px;
     font-weight: bold;
@@ -234,37 +359,18 @@ footer {
     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
 }
 
-.social-link.github {
-    background: linear-gradient(135deg, #24292e, #2b3137);
-}
+.social-link.github { background: linear-gradient(135deg, #24292e, #2b3137); }
+.social-link.linkedin { background: linear-gradient(135deg, #0077b5, #00a0dc); }
+.social-link.email { background: linear-gradient(135deg, #ea4335, #c5221f); }
+.social-link.instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+.social-link.facebook { background: linear-gradient(135deg, #1877f2, #3b5998); }
 
-.social-link.linkedin {
-    background: linear-gradient(135deg, #0077b5, #00a0dc);
-}
-
-.social-link.email {
-    background: linear-gradient(135deg, #ea4335, #c5221f);
-}
-
-.social-link.instagram {
-    background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-}
-
-.social-link.instagram:hover {
-    filter: brightness(1.1);
-}
-
-.social-link.facebook {
-    background: linear-gradient(135deg, #1877f2, #3b5998);
-}
-
-/* Premium Dribbble Theme Toggler (Sun & Moon Sky Slider) */
+/* Theme Toggler */
 .theme-switch {
     position: relative;
     display: inline-block;
     width: 60px;
     height: 30px;
-    margin-top: 4px;
 }
 
 .theme-switch input {
@@ -276,361 +382,43 @@ footer {
     opacity: 0;
     cursor: pointer;
     z-index: 10;
-    margin: 0;
 }
 
 .slider {
     position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: 0; left: 0; right: 0; bottom: 0;
     background: linear-gradient(135deg, #7ec0ee, #4a90e2);
-    transition: 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    transition: 0.5s;
     border-radius: 30px;
     overflow: hidden;
 }
 
-/* Sun in Light Mode */
 .slider::before {
     position: absolute;
     content: "";
-    height: 22px;
-    width: 22px;
-    left: 4px;
-    bottom: 4px;
+    height: 22px; width: 22px;
+    left: 4px; bottom: 4px;
     background-color: #ffdb58;
-    transition: 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    transition: 0.5s;
     border-radius: 50%;
-    box-shadow: 0 0 10px rgba(255, 219, 88, 0.8), 0 0 20px rgba(255, 219, 88, 0.4);
     z-index: 2;
 }
 
-/* Starry Sky for Dark Mode */
-.slider .stars {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    opacity: 0;
-    transition: 0.5s ease;
-    background-image: 
-        radial-gradient(1px 1px at 15px 8px, #fff, rgba(0,0,0,0)),
-        radial-gradient(1.5px 1.5px at 30px 18px, #fff, rgba(0,0,0,0)),
-        radial-gradient(1px 1px at 45px 10px, #fff, rgba(0,0,0,0)),
-        radial-gradient(2px 2px at 22px 22px, #fff, rgba(0,0,0,0));
-}
+input:checked + .slider { background: linear-gradient(135deg, #0f2027, #203a43); }
+input:checked + .slider::before { transform: translateX(30px); background-color: #d1d5db; }
 
-/* Clouds for Light Mode */
-.slider .clouds {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    opacity: 1;
-    transition: 0.5s ease;
-}
-
-.slider .clouds::before,
-.slider .clouds::after {
-    position: absolute;
-    content: "";
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-}
-.slider .clouds::before {
-    width: 16px;
-    height: 16px;
-    bottom: -4px;
-    right: 8px;
-}
-.slider .clouds::after {
-    width: 24px;
-    height: 24px;
-    bottom: -10px;
-    right: 18px;
-}
-
-/* Dark Mode Track Background */
-input:checked + .slider {
-    background: linear-gradient(135deg, #0f2027, #203a43);
-}
-
-/* Moon in Dark Mode */
-input:checked + .slider::before {
-    transform: translateX(30px);
-    background-color: #d1d5db;
-    box-shadow: 
-        0 0 10px rgba(209, 213, 219, 0.4),
-        inset -3px -3px 0px rgba(0, 0, 0, 0.15); /* Moon crater depth shading */
-}
-
-/* Moon craters */
-input:checked + .slider::after {
-    position: absolute;
-    content: "";
-    height: 3px;
-    width: 3px;
-    left: 42px;
-    top: 10px;
-    background-color: #9ca3af;
-    border-radius: 50%;
-    box-shadow: 
-        4px 6px 0 #9ca3af,
-        -1px 8px 0 #9ca3af;
-    opacity: 0.6;
-    z-index: 3;
-    transition: 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
-}
-
-input:checked + .slider .stars {
-    opacity: 1;
-}
-
-input:checked + .slider .clouds {
-    opacity: 0;
-    transform: translateY(10px);
-}
-
-/* ===================================================
-   RESPONSIVE DESIGN — Media Queries
-   Fixes Mobile Usability score (was 29/100, no breakpoints)
-   =================================================== */
-
-/* --- Tablet: ≤ 768px --- */
+/* Responsive Media Queries */
 @media (max-width: 768px) {
-    header nav {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-        padding: 12px 16px;
-    }
-
-    header nav ul {
-        flex-wrap: wrap;
-        gap: 8px;
-        padding-left: 0;
-    }
-
-    header nav ul li {
-        margin-left: 0;
-    }
-
-    .nav-brand-container {
-        width: 100%;
-    }
-
-    main {
-        padding: 0 16px;
-        margin: 12px auto;
-    }
-
-    .hero {
-        padding: 2.5em 1.5em;
-    }
-
-    .hero h2 {
-        font-size: 1.9em;
-    }
-
-    .hero p {
-        font-size: 1em;
-    }
-
-    .section {
-        padding: 1.5em;
-    }
-
-    .project-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .social-links {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-    }
-
-    .social-link {
-        width: 100%;
-        justify-content: center;
-        padding: 12px 16px;
-    }
-
-    footer {
-        padding: 1.5em 1em;
-    }
-
-    .footer-social-links {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
-    }
-
-    .footer-social-link {
-        font-size: 0.85em;
-        padding: 6px 12px;
-    }
-}
-
-/* --- Mobile: ≤ 480px --- */
-@media (max-width: 480px) {
-    header nav {
-        padding: 10px 12px;
-    }
-
-    header nav ul li a {
-        font-size: 0.9em;
-    }
-
-    .hero {
-        padding: 2em 1em;
-        border-radius: 6px;
-    }
-
-    .hero h2 {
-        font-size: 1.5em;
-    }
-
-    .hero p {
-        font-size: 0.95em;
-    }
-
-    .section {
-        padding: 1.2em 1em;
-        border-radius: 6px;
-    }
-
-    .project-card {
-        padding: 12px;
-    }
-
-    .skills-list {
-        gap: 8px;
-    }
-
-    .skills-list li {
-        font-size: 0.9em;
-        padding: 6px 12px;
-    }
-
-    form input[type="text"],
-    form input[type="email"],
-    form textarea {
-        font-size: 1em; /* Prevents iOS zoom-in on focus */
-    }
-
-    .btn {
-        display: block;
-        text-align: center;
-        padding: 12px 16px;
-    }
-
-    .theme-switch {
-        width: 52px;
-        height: 26px;
-    }
-
-    .slider::before {
-        height: 18px;
-        width: 18px;
-        left: 4px;
-        bottom: 4px;
-    }
-
-    input:checked + .slider::before {
-        transform: translateX(26px);
-    }
-
-    h1 { font-size: 1.4em; }
-    h2 { font-size: 1.3em; }
-    h3 { font-size: 1.1em; }
-}
-
-/* Testimonial section */
-.testimonial-section {
-    background: linear-gradient(135deg, var(--bg-secondary), var(--card-bg));
-    border-left: 4px solid #007bff;
-    padding: 1.5em 2em;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 4px var(--shadow-color);
-}
-
-.testimonial-section blockquote {
-    margin: 0 0 0.8em 0;
-    font-size: 1.05em;
-    font-style: italic;
-    color: var(--text-primary);
-    line-height: 1.6;
-}
-
-.testimonial-section cite {
-    font-style: normal;
-    font-weight: bold;
-    color: var(--text-secondary);
-    font-size: 0.9em;
-}
-
-/* Project outcome badge */
-.project-outcome {
-    display: inline-block;
-    background: linear-gradient(135deg, #28a745, #218838);
-    color: white;
-    font-size: 0.8em;
-    font-weight: bold;
-    padding: 4px 10px;
-    border-radius: 20px;
-    margin-top: 8px;
-}
-
-/* Footer social links */
-.footer-inner {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 1em 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 12px;
-}
-
-.footer-social-links {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.footer-social-link {
-    color: #ccc;
-    text-decoration: none;
-    font-size: 0.9em;
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    transition: color 0.2s ease;
-}
-
-.footer-social-link:hover {
-    color: #fff;
+    header nav { flex-direction: column; gap: 15px; }
+    header nav ul { gap: 10px; }
+    header nav ul li { margin-left: 0; }
+    .hero h2 { font-size: 2.2em; }
+    .project-grid { grid-template-columns: 1fr; }
+    .social-link { width: 100%; justify-content: center; }
 }
 
 @media (max-width: 480px) {
-    .testimonial-section {
-        padding: 1.2em 1em;
-    }
-
-    .footer-inner {
-        padding: 1em;
-        gap: 8px;
-    }
-
-    .footer-social-links {
-        gap: 10px;
-    }
+    .hero { padding: 3em 1em; }
+    .hero h2 { font-size: 1.8em; }
+    .section { padding: 1.5em; }
 }
-

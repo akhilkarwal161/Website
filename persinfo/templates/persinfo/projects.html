@@ -8,15 +8,28 @@
         <div class="project-grid">
             {% for project in all_projects %}
                 <div class="project-card">
-                    <h4><a href="{% url 'persinfo:project_detail' project.id %}">{{ project.title }}</a></h4>
-                    <p>{{ project.description|truncatechars:150 }}</p>
-                    <p>Technologies: {{ project.technologies }}</p>
-                    {% if project.github_link %}
-                        <a href="{{ project.github_link }}" target="_blank" rel="noopener noreferrer">GitHub</a>
-                    {% endif %}
-                    {% if project.live_link %}
-                        <a href="{{ project.live_link }}" target="_blank" rel="noopener noreferrer">Live Demo</a>
-                    {% endif %}
+                    <div>
+                        <h4><a href="{% url 'persinfo:project_detail' project.id %}">{{ project.title }}</a></h4>
+                        <p>{{ project.description|truncatechars:180 }}</p>
+                        <div class="project-tech">
+                            <i class="fas fa-code"></i> {{ project.technologies }}
+                        </div>
+                    </div>
+                    <div class="project-links">
+                        {% if project.github_link %}
+                            <a href="{{ project.github_link }}" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-github"></i> Source
+                            </a>
+                        {% endif %}
+                        {% if project.live_link %}
+                            <a href="{{ project.live_link }}" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-external-link-alt"></i> Demo
+                            </a>
+                        {% endif %}
+                        <a href="{% url 'persinfo:project_detail' project.id %}" class="read-more">
+                            Details &rarr;
+                        </a>
+                    </div>
                 </div>
             {% empty %}
                 <p>No projects to display yet.</p>
