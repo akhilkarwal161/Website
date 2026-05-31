@@ -19,7 +19,7 @@ __pycache__/
 # However, our Dockerfile runs `collectstatic` inside the container,
 # so you might want to keep this commented out or remove it if you want
 # the `staticfiles` directory to be created within the image.
-# staticfiles/
+staticfiles/
 
 # Ignore media files if they are user-uploaded and will be stored externally
 # (e.g., S3, Google Cloud Storage) or mounted as a volume.
