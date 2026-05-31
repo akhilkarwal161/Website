@@ -23,7 +23,7 @@ ENV PYTHONUNBUFFERED=1
 ENV DJANGO_DEBUG=False
 
 # Collect static files
-RUN python manage.py collectstatic --noinput
+RUN python manage.py collectstatic --noinput && python manage.py compress
 
 # Expose the port for the application
 EXPOSE 8080
