@@ -28,5 +28,5 @@ RUN python manage.py collectstatic --noinput && python manage.py compress
 # Expose the port for the application
 EXPOSE 8080
 
-# Run Gunicorn to serve the Django application, running migrations on startup and setting workers/threads
-CMD ["sh", "-c", "python manage.py migrate && gunicorn --bind 0.0.0.0:8080 --workers 3 --threads 2 --timeout 60 mainweb.wsgi:application"]
+# Run Gunicorn to serve the Django application, running migrations and cache table setup on startup
+CMD ["sh", "-c", "python manage.py migrate && python manage.py createcachetable && gunicorn --bind 0.0.0.0:8080 --workers 3 --threads 2 --timeout 60 mainweb.wsgi:application"]
