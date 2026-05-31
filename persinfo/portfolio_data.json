@@ -2,30 +2,48 @@
   "projects": [
     {
       "id": 1,
-      "title": "Libsys",
-      "description": "LibSys is a library management system built with Django (Python). It allows for the efficient tracking of books and members, focusing on core lending functions: borrowing and returning. This web-based application simplifies library operations by providing a straightforward interface for managing resource availability and member loans.",
-      "outcome": "Reduced book-tracking time by automating member loans and returns",
-      "technologies": "Django,Python,Rest-api",
+      "title": "Libsys — Library Management System",
+      "description": "A comprehensive library management system built with Django (Python) for efficient resource tracking, automated book lending workflows (borrowing and returns), and membership loan tracking.",
+      "outcome": "Streamlined library inventory and borrowing workflows",
+      "technologies": "Django,Python,REST API,SQLite",
       "github_link": "https://github.com/akhilkarwal161/LibSys",
       "live_link": "https://libsys-xvhbgr5zoq-as.a.run.app"
     },
     {
       "id": 2,
-      "title": "Credit Card Advisor",
-      "description": "This Credit Card Advisor is an AI-powered conversational agent designed to help users find the best-fit credit cards based on their financial profile and spending habits. Built with Flask for the backend and a LangChain agent, it guides users through a series of questions to collect necessary information (monthly income, spending habits, preferred benefits, existing cards, and credit score), and then recommends suitable credit cards from a simulated database.",
-      "outcome": "Delivers personalised credit card recommendations via AI-powered conversation",
-      "technologies": "Python,JavaScript",
+      "title": "AI Credit Card Advisor",
+      "description": "An AI-powered conversational web application built with Flask and LangChain. Guides users through personal finance profiling questions to dynamically recommend best-fit credit cards based on spending habits, benefits, and credit score.",
+      "outcome": "Delivers personalized financial recommendations through conversational AI",
+      "technologies": "Flask,Python,LangChain,JavaScript",
       "github_link": "https://github.com/akhilkarwal161/credit_card_advisor",
       "live_link": "https://credit-card-advisor-xvhbgr5zoq-em.a.run.app"
     },
     {
       "id": 3,
-      "title": "Automated GCP Cloud Run Django Deployer",
-      "description": "An automated Infrastructure as Code (IaC) and configuration management setup (terraform_project). Uses Terraform to securely provision Google Cloud Platform (GCP) resources—including Google Cloud Run for serverless container execution, Google Artifact Registry for Docker image storage, and secure IAM service accounts. Integrates Ansible playbooks for seamless continuous orchestration of containerized Django app deployments.",
-      "outcome": "Implemented reliable, stateless production serverless deployments on Google Cloud Run using Terraform and Ansible",
-      "technologies": "Terraform,Ansible,GCP,Google Cloud Run,Docker,Django",
+      "title": "SIEM Monitoring & Logging Pipeline",
+      "description": "A comprehensive Security Information and Event Management (SIEM) pipeline. Orchestrates log ingestion from Windows and Linux systems using Splunk and Graylog. Automates security telemetry parses, event correlation (e.g., detecting brute-force attack IDs 4624/4625), and generates real-time dashboard visualization.",
+      "outcome": "Established automated host security monitoring and proactive threat detection",
+      "technologies": "Splunk,Graylog,Linux,Python,Syslog",
       "github_link": "",
       "live_link": ""
+    },
+    {
+      "id": 4,
+      "title": "Epic Games Free Game Auto-Fetcher",
+      "description": "An automated browser-automation bot built in Python utilizing Playwright. Automatically logs in, authenticates bypasses, checks the Epic Games Store weekly for free promotional titles, claims them, and dispatches automated success notifications via Telegram webhook.",
+      "outcome": "Automated promotional claim workflows with headless browser state preservation",
+      "technologies": "Python,Playwright,Telegram API,Docker",
+      "github_link": "",
+      "live_link": ""
+    },
+    {
+      "id": 5,
+      "title": "Hackerproof Personal Portfolio",
+      "description": "The source code for this personal portfolio website. Deployed statelessly to Google Cloud Run, featuring robust custom application rate-limiting decorators (django-ratelimit), sqlite DatabaseCache sharing across parallel Gunicorn workers, and optimized Google Analytics 4 tracking.",
+      "outcome": "Deployed an ultra-secure, highly scalable, and completely zero-idle-cost serverless web presence",
+      "technologies": "Django,GCP Cloud Run,Docker,SQLite,CSS,Python",
+      "github_link": "https://github.com/akhilkarwal161/Website",
+      "live_link": "https://akhilkarwal.com"
     }
   ],
   "skills": [
