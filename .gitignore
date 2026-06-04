@@ -1,113 +1,99 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
 
-# C extensions
-*.so
-
-# Distribution / packaging
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
-
-# PyInstaller
-*.manifest
-*.spec
-
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
-.pytest_cache/
-cover/
-
-# Translations
-*.mo
-*.pot
-
-# Django runtime configurations & data files
-*.log
-local_settings.py
-# db.sqlite3 tracked intentionally for cross-device portability (local dev only)
-db.sqlite3-journal
-mediafiles/
-staticfiles/
-django_cache/
-
-# Flask stuff
-instance/
-.webassets-cache
-
-# Scrapy stuff
-.scrapy
-
-# Sphinx documentation
-docs/_build/
-
-# Jupyter Notebook
 .ipynb_checkpoints
-
-# venv
-# Use common names for Python virtual environments
-.venv/
-venv/
-ENV/
-env/
-website/
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# IDE and editor files
-.idea/
-.vscode/
-*.swp
-*~
-.qodo/
-
-# Environment variables and secrets
-.env
-.env.*
-.secrets
-secrets.json
-# GCP service account key files - NEVER commit these!
 *.json
-!persinfo/portfolio_data.json
-
-# OS-generated files
-.DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
+*.pyo
+.webassets-cache
+*.manifest
 Thumbs.db
+nosetests.xml
+lib64/
+*.pyc
+*.mo
+# Translations
+.venv/
+htmlcov/
+.coverage
+# Sphinx documentation
+# IDE and editor files
+downloads/
+wheels/
+ENV/
+.Spotlight-V100
+.env
+# mypy
+# venv
+node_modules/
+.coverage.*
+venv/
+# Use common names for Python virtual environments
+# Distribution / packaging
+parts/
+pip-log.txt
+build/
+share/python-wheels/
+.mypy_cache/
+.Trashes
+.vscode/
+._*
+*.cover
+MANIFEST
+*.pot
+mediafiles/
+# Unit test / coverage reports
+# OS-generated files
+*.egg-info/
+# db.sqlite3 tracked intentionally for cross-device portability (local dev only)
+.env.*
+eggs/
+.idea/
+django_cache/
+coverage.xml
+*.spec
+.dmypy.json
+.hypothesis/
+# Byte-compiled / optimized / DLL files
+secrets.json
+pip-delete-this-directory.txt
+website/
+.pytest_cache/
+*~
+# GCP service account key files - NEVER commit these!
+# Jupyter Notebook
+sdist/
+# C extensions
+*.log
+.qodo/
+*.so
+.DS_Store
+.installed.cfg
+dmypy.json
+# Flask stuff
+.tox/
+var/
+.eggs/
+staticfiles/
+# PyInstaller
+# Installer logs
+.secrets
+env/
+*.egg
+db.sqlite3-journal
+local_settings.py
+# Django runtime configurations & data files
+lib/
+.scrapy
+!persinfo/portfolio_data.json
+docs/_build/
+.cache
+*.swp
+# Scrapy stuff
+dist/
+cover/
+.DS_Store?
+instance/
+develop-eggs/
+# Environment variables and secrets
+*.py,cover
+ehthumbs.db
+*.pyd
+__pycache__/
