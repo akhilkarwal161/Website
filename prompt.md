@@ -404,6 +404,7 @@ Directory structure:
     ├── CURRENT_CONTEXT.md
     ├── Dockerfile
     ├── manage.py
+    ├── prompt.md
     ├── requirements.txt
     ├── WHAT_HAVE_WE_ACHIEVED.md
     ├── .dockerignore
@@ -420,6 +421,7 @@ Directory structure:
     │   ├── forms.py
     │   ├── middleware.py
     │   ├── models.py
+    │   ├── portfolio_data.json
     │   ├── tests.py
     │   ├── urls.py
     │   ├── views.py
@@ -697,6 +699,12 @@ def main():
 if __name__ == '__main__':
     main()
 
+
+
+================================================
+FILE: prompt.md
+================================================
+[Binary file]
 
 
 ================================================
@@ -1319,6 +1327,79 @@ class ContactMessage(models.Model):
 
     def __str__(self):
         return f"Message from {self.name} - {self.subject[:50]}..."
+
+
+
+================================================
+FILE: persinfo/portfolio_data.json
+================================================
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "Libsys â€” Library Management System",
+      "description": "A comprehensive library management system built with Django (Python) for efficient resource tracking, automated book lending workflows (borrowing and returns), and membership loan tracking.",
+      "outcome": "Streamlined library inventory and borrowing workflows",
+      "technologies": "Django,Python,REST API,SQLite",
+      "github_link": "https://github.com/akhilkarwal161/LibSys",
+      "live_link": "https://libsys-xvhbgr5zoq-as.a.run.app"
+    },
+    {
+      "id": 2,
+      "title": "AI Credit Card Advisor",
+      "description": "An AI-powered conversational web application built with Flask and LangChain. Guides users through personal finance profiling questions to dynamically recommend best-fit credit cards based on spending habits, benefits, and credit score.",
+      "outcome": "Delivers personalized financial recommendations through conversational AI",
+      "technologies": "Flask,Python,LangChain,JavaScript",
+      "github_link": "https://github.com/akhilkarwal161/credit_card_advisor",
+      "live_link": "https://credit-card-advisor-xvhbgr5zoq-em.a.run.app"
+    },
+    {
+      "id": 3,
+      "title": "SIEM Practice Lab (GCP)",
+      "description": "A fully automated Security Information and Event Management (SIEM) and log management lab environment deployed on GCP. Uses Terraform to provision Compute Engine VMs and networks, and Ansible to configure Graylog 5.2 (2-Node Cluster), Splunk Enterprise 9.2, Zabbix 6.4 (monitoring), and Zammad (ticketing). Features a native Google Cloud DNS sync script running on boot and via 5-minute cron to automatically sync splunk/graylog/monitor/ticket.akhilkarwal.com sublinks with ephemeral external IPs.",
+      "outcome": "Implemented completely automated one-click SIEM security environments and dynamic DNS orchestrations",
+      "technologies": "GCP,Terraform,Ansible,Splunk,Graylog,Zabbix,Zammad,Rsyslog,Python",
+      "github_link": "",
+      "live_link": ""
+    },
+    {
+      "id": 4,
+      "title": "Epic & Steam Games Daily Auto-Alert Bot",
+      "description": "A daily automated alerting pipeline running on GitHub Actions. Dynamically queries Epic Games Store APIs for free promotional titles and queries the Steam API for premium game deals under â‚¹500 (with strict filters for DLCs, demos, and betas). Automatically generates styled Microsoft Word (.docx) reports with custom XML formatting, and delivers them along with game cards directly to WhatsApp via the Green API.",
+      "outcome": "Fully automated daily deal tracker utilizing external store APIs and instant messaging notification channels",
+      "technologies": "Python,Requests,python-docx,Green API,GitHub Actions",
+      "github_link": "",
+      "live_link": ""
+    },
+    {
+      "id": 5,
+      "title": "Hackerproof Serverless Portfolio Website",
+      "description": "A secure, stateless personal portfolio website repository. Deployed serverlessly to GCP Cloud Run with zero idle costs. Features comprehensive Layer-7 WAF rate limiting (django-ratelimit) blocking brute-force form floods, proxy-aware client IP extraction from X-Forwarded-For load balancer headers, and a centralized DatabaseCache storing rate limits in a shared SQLite database across parallel Gunicorn workers. Includes an elegant glassmorphic 429 screen with a client-side JavaScript countdown timer.",
+      "outcome": "Architected a secure, resilient, and completely zero-maintenance serverless web presence with multi-process rate limits",
+      "technologies": "Django,GCP Cloud Run,Docker,SQLite,Ansible,CSS,Python",
+      "github_link": "https://github.com/akhilkarwal161/Website",
+      "live_link": "https://akhilkarwal.com"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Python",
+      "level": "advanced"
+    },
+    {
+      "name": "Java",
+      "level": "advanced"
+    },
+    {
+      "name": "Playwright Automation",
+      "level": "intermediate"
+    },
+    {
+      "name": "Selenium Automation",
+      "level": "intermediate"
+    }
+  ]
+}
 
 
 
