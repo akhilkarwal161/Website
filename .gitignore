@@ -1,99 +1,99 @@
 
-*.pot
-*.py,cover
-sdist/
-coverage.xml
-dmypy.json
-*.json
-.coverage.*
-.env
-staticfiles/
-*~
-.hypothesis/
-# Sphinx documentation
-node_modules/
-pip-log.txt
-.ipynb_checkpoints
-*.mo
-# Installer logs
-!persinfo/portfolio_data.json
-# mypy
-.Spotlight-V100
-*.swp
-.installed.cfg
-.mypy_cache/
-*.egg
-cover/
-# Scrapy stuff
-local_settings.py
-instance/
-lib64/
-# Unit test / coverage reports
-.scrapy
-develop-eggs/
-__pycache__/
-.pytest_cache/
-.DS_Store?
-# Translations
-*.manifest
-*.pyd
-# Distribution / packaging
-# IDE and editor files
-.webassets-cache
-.qodo/
-*.so
-wheels/
-dist/
-var/
-# OS-generated files
-docs/_build/
-# C extensions
-.dmypy.json
-env/
-# venv
-*.egg-info/
-share/python-wheels/
-db.sqlite3-journal
-._*
-.DS_Store
-pip-delete-this-directory.txt
-.env.*
-# Jupyter Notebook
-.cache
-.secrets
-htmlcov/
-secrets.json
-.eggs/
-ENV/
-*.cover
-.vscode/
-eggs/
-# Byte-compiled / optimized / DLL files
-*.log
-build/
-mediafiles/
-downloads/
-django_cache/
-.Trashes
-# PyInstaller
-.idea/
-.tox/
-.coverage
-MANIFEST
-ehthumbs.db
-# GCP service account key files - NEVER commit these!
-lib/
 # Use common names for Python virtual environments
-*.pyo
-parts/
-# Environment variables and secrets
-nosetests.xml
-Thumbs.db
+.secrets
 # Flask stuff
+.ipynb_checkpoints
+*.pot
 website/
-*.spec
-.venv/
+# Unit test / coverage reports
+# Environment variables and secrets
+MANIFEST
+__pycache__/
+.DS_Store?
+*.cover
+.scrapy
+node_modules/
+*~
+# IDE and editor files
+dist/
+!persinfo/portfolio_data.json
+.Spotlight-V100
+var/
+db.sqlite3-journal
+*.swp
+.idea/
+docs/_build/
+# mypy
+sdist/
 # Django runtime configurations & data files
-venv/
+share/python-wheels/
+.env.*
+# Sphinx documentation
+lib/
+.pytest_cache/
+# GCP service account key files - NEVER commit these!
+# Translations
 # db.sqlite3 tracked intentionally for cross-device portability (local dev only)
+develop-eggs/
+.venv/
+downloads/
+.webassets-cache
+.dmypy.json
+Thumbs.db
+*.pyd
+*.egg-info/
+*.pyo
+django_cache/
+htmlcov/
+build/
+# Jupyter Notebook
+# Byte-compiled / optimized / DLL files
+# Scrapy stuff
+# Distribution / packaging
+.mypy_cache/
+lib64/
+secrets.json
+*.spec
+mediafiles/
+.qodo/
+parts/
+.coverage.*
+*.json
+ehthumbs.db
+env/
+._*
+.Trashes
+.hypothesis/
+# C extensions
+staticfiles/
+*.egg
+*.py,cover
+eggs/
+.coverage
+venv/
 *.pyc
+wheels/
+coverage.xml
+pip-log.txt
+.vscode/
+local_settings.py
+*.log
+nosetests.xml
+.env
+*.manifest
+cover/
+.DS_Store
+dmypy.json
+pip-delete-this-directory.txt
+.tox/
+.eggs/
+*.so
+ENV/
+# Installer logs
+# venv
+# PyInstaller
+# OS-generated files
+instance/
+.cache
+*.mo
+.installed.cfg
