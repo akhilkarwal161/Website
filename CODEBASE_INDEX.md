@@ -79,7 +79,7 @@ F:\REpo\Website
 | `mainweb/urls.py` | Root URLs, 404/500/429 custom error routing | Django, `persinfo.urls` |
 | `persinfo/models.py` | DB Schemas (Project, Skill, ContactMessage) | Django models |
 | `persinfo/middleware.py` | www-redirection and proxy-aware RateLimit enforcement | Django middleware |
-| `persinfo/views.py` | Page renders, dynamic 5-project portfolio, Green API | Django, models, requests |
+| `persinfo/views.py` | Page renders, dynamic 5-project portfolio, Slack Webhook | Django, models, requests |
 | `persinfo/urls.py` | Namespace routes (`persinfo`) | Django urls, `views.py` |
 | `persinfo/static/` | App assets (style.css, main.js) | Static file system |
 | `persinfo/templates/` | Custom HTML UI templates & Glassmorphic 429 page | Django templates |

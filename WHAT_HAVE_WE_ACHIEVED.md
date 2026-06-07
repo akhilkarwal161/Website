@@ -9,6 +9,8 @@
 
 ## Recent Changes Ledger
 
+- **2026-06-07**:
+    - **Replaced Green API with Slack Webhook**: Updated contact form submission notifications to deliver to a Slack channel via Slack Webhook, replacing the previous Green API WhatsApp notifications.
 - **2026-06-01**: 
     - **Completed Full SEO Optimization**: Added mobile media query overrides to stylesheet, preloaded render-blocking fonts, secured external URLs with `rel="noopener noreferrer"`, sitemap reference, and updated `manifest.json`.
     - **GA4 Position Correction**: Moved Google Analytics 4 tracking script directly after the opening `<head>` tag and pruned duplicate footer integrations.
@@ -20,7 +22,7 @@
     - **Private Repository Omission**: Structured HTML logic to hide repository and live demo links for the private projects (SIEM Lab & Games Bot).
     - **Cache Invalidation**: Invalidated caching layer via `portfolio_v6` key prefix in Django settings to apply portfolio updates instantly.
 - **2026-05-31**: 
-    - **Integrated Green API for WhatsApp Notifications**: Refactored `contact_view` to send real-time alerts for new form submissions.
+    - **Integrated Slack Webhook for Form Notifications**: Refactored `contact_view` to send real-time alerts for new form submissions.
     - **Implemented Aggressive Site-Wide Preloading**: Added Speculation Rules API (moderate eagerness) and Quicklink (IntersectionObserver) to both app and root base layouts.
     - **Optimized Projects Page**: Overhauled `/projects/` with premium card designs, hover effects, and modern grid layout. 
     - **Installed Google Tag Analytics**: Added GA4 (gtag.js) to head of all layout templates.

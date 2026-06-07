@@ -14,6 +14,6 @@
 
 1. **Verify Live Rate Limiting**: Access the production endpoint and trigger POST requests rapidly to confirm the premium glassmorphic `429 Too Many Requests` page fires, and the interactive JS countdown operates.
 2. **Monitor Google Analytics**: Access GA4 console to verify real-time events propagate through the newly repositioned tag.
-3. **Verify Contact Form Alerts**: Test dynamic contact form submissions to confirm the honeypot blocks bots and Green API correctly forwards notifications to the WhatsApp recipient.
+3. **Verify Contact Form Alerts**: Test dynamic contact form submissions to confirm the honeypot blocks bots and Slack Webhook correctly forwards notifications to the Slack channel.
 4. **Perform Load Tests**: Verify SQLite cache table handles concurrency across multiple simultaneous connections without write locks.
 

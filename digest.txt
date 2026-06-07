@@ -182,7 +182,7 @@ F:\REpo\Website
 | `mainweb/urls.py` | Root URLs, 404/500/429 custom error routing | Django, `persinfo.urls` |
 | `persinfo/models.py` | DB Schemas (Project, Skill, ContactMessage) | Django models |
 | `persinfo/middleware.py` | www-redirection and proxy-aware RateLimit enforcement | Django middleware |
-| `persinfo/views.py` | Page renders, dynamic 5-project portfolio, Green API | Django, models, requests |
+| `persinfo/views.py` | Page renders, dynamic 5-project portfolio, Slack Webhook | Django, models, requests |
 | `persinfo/urls.py` | Namespace routes (`persinfo`) | Django urls, `views.py` |
 | `persinfo/static/` | App assets (style.css, main.js) | Static file system |
 | `persinfo/templates/` | Custom HTML UI templates & Glassmorphic 429 page | Django templates |
@@ -231,7 +231,7 @@ FILE: CURRENT_CONTEXT.md
 
 1. **Verify Live Rate Limiting**: Access the production endpoint and trigger POST requests rapidly to confirm the premium glassmorphic `429 Too Many Requests` page fires, and the interactive JS countdown operates.
 2. **Monitor Google Analytics**: Access GA4 console to verify real-time events propagate through the newly repositioned tag.
-3. **Verify Contact Form Alerts**: Test dynamic contact form submissions to confirm the honeypot blocks bots and Green API correctly forwards notifications to the WhatsApp recipient.
+3. **Verify Contact Form Alerts**: Test dynamic contact form submissions to confirm the honeypot blocks bots and Slack Webhook correctly forwards notifications to the Slack channel.
 4. **Perform Load Tests**: Verify SQLite cache table handles concurrency across multiple simultaneous connections without write locks.
 
 
@@ -357,6 +357,8 @@ FILE: WHAT_HAVE_WE_ACHIEVED.md
 
 ## Recent Changes Ledger
 
+- **2026-06-07**:
+    - **Replaced Green API with Slack Webhook**: Updated contact form submission notifications to deliver to a Slack channel via Slack Webhook, replacing the previous Green API WhatsApp notifications.
 - **2026-06-01**: 
     - **Completed Full SEO Optimization**: Added mobile media query overrides to stylesheet, preloaded render-blocking fonts, secured external URLs with `rel="noopener noreferrer"`, sitemap reference, and updated `manifest.json`.
     - **GA4 Position Correction**: Moved Google Analytics 4 tracking script directly after the opening `<head>` tag and pruned duplicate footer integrations.
@@ -368,7 +370,7 @@ FILE: WHAT_HAVE_WE_ACHIEVED.md
     - **Private Repository Omission**: Structured HTML logic to hide repository and live demo links for the private projects (SIEM Lab & Games Bot).
     - **Cache Invalidation**: Invalidated caching layer via `portfolio_v6` key prefix in Django settings to apply portfolio updates instantly.
 - **2026-05-31**: 
-    - **Integrated Green API for WhatsApp Notifications**: Refactored `contact_view` to send real-time alerts for new form submissions.
+    - **Integrated Slack Webhook for Form Notifications**: Refactored `contact_view` to send real-time alerts for new form submissions.
     - **Implemented Aggressive Site-Wide Preloading**: Added Speculation Rules API (moderate eagerness) and Quicklink (IntersectionObserver) to both app and root base layouts.
     - **Optimized Projects Page**: Overhauled `/projects/` with premium card designs, hover effects, and modern grid layout. 
     - **Installed Google Tag Analytics**: Added GA4 (gtag.js) to head of all layout templates.
@@ -973,20 +975,16 @@ from .forms import ContactForm
 
 logger = logging.getLogger(__name__)
 
-def send_whatsapp_notification(name, email, subject, message):
-    """Sends a WhatsApp notification via Green API."""
-    id_instance = os.getenv('GREEN_API_ID')
-    api_token = os.getenv('GREEN_API_TOKEN')
-    target_phone = os.getenv('TARGET_PHONE')
+def send_slack_notification(name, email, subject, message):
+    """Sends a Slack notification via Slack Webhook."""
+    webhook_url = os.getenv('SLACK_WEBHOOK_URL')
 
-    if not all([id_instance, api_token, target_phone]):
-        logger.warning("WhatsApp notification skipped: Missing Green API credentials.")
+    if not webhook_url:
+        logger.warning("Slack notification skipped: Missing SLACK_WEBHOOK_URL environment variable.")
         return
 
-    url = f"https://api.green-api.com/waInstance{id_instance}/sendMessage/{api_token}"
-    
-    # Format message for WhatsApp
-    whatsapp_text = (
+    # Format message for Slack markdown
+    slack_text = (
         f"ðŸ“© *New Contact Form Submission*\n\n"
         f"*Name:* {name}\n"
         f"*Email:* {email}\n"
@@ -995,17 +993,15 @@ def send_whatsapp_notification(name, email, subject, message):
     )
 
     payload = {
-        "chatId": f"{target_phone}@c.us",
-        "message": whatsapp_text
+        "text": slack_text
     }
     
     try:
-        # Increased timeout to 15s for WhatsApp delivery
-        response = requests.post(url, json=payload, timeout=15)
+        response = requests.post(webhook_url, json=payload, timeout=15)
         response.raise_for_status()
-        logger.info("WhatsApp notification sent successfully.")
+        logger.info("Slack notification sent successfully.")
     except Exception as e:
-        logger.error("Failed to send WhatsApp notification: %s", e)
+        logger.error("Failed to send Slack notification: %s", e)
 
 def load_portfolio_data():
     """Reads projects and skills data dynamically from JSON file inside repository to avoid idle DB hosting costs."""
@@ -1058,8 +1054,8 @@ def contact_view(request):
         if form.is_valid():
             message_obj = form.save()
             
-            # Send WhatsApp Notification via Green API
-            send_whatsapp_notification(
+            # Send Slack Notification via Slack Webhook
+            send_slack_notification(
                 message_obj.name, 
                 message_obj.email, 
                 message_obj.subject, 

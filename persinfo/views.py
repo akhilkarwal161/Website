@@ -10,20 +10,16 @@ from .forms import ContactForm
 
 logger = logging.getLogger(__name__)
 
-def send_whatsapp_notification(name, email, subject, message):
-    """Sends a WhatsApp notification via Green API."""
-    id_instance = os.getenv('GREEN_API_ID')
-    api_token = os.getenv('GREEN_API_TOKEN')
-    target_phone = os.getenv('TARGET_PHONE')
+def send_slack_notification(name, email, subject, message):
+    """Sends a Slack notification via Slack Webhook."""
+    webhook_url = os.getenv('SLACK_WEBHOOK_URL')
 
-    if not all([id_instance, api_token, target_phone]):
-        logger.warning("WhatsApp notification skipped: Missing Green API credentials.")
+    if not webhook_url:
+        logger.warning("Slack notification skipped: Missing SLACK_WEBHOOK_URL environment variable.")
         return
 
-    url = f"https://api.green-api.com/waInstance{id_instance}/sendMessage/{api_token}"
-    
-    # Format message for WhatsApp
-    whatsapp_text = (
+    # Format message for Slack markdown
+    slack_text = (
         f"📩 *New Contact Form Submission*\n\n"
         f"*Name:* {name}\n"
         f"*Email:* {email}\n"
@@ -32,17 +28,15 @@ def send_whatsapp_notification(name, email, subject, message):
     )
 
     payload = {
-        "chatId": f"{target_phone}@c.us",
-        "message": whatsapp_text
+        "text": slack_text
     }
     
     try:
-        # Increased timeout to 15s for WhatsApp delivery
-        response = requests.post(url, json=payload, timeout=15)
+        response = requests.post(webhook_url, json=payload, timeout=15)
         response.raise_for_status()
-        logger.info("WhatsApp notification sent successfully.")
+        logger.info("Slack notification sent successfully.")
     except Exception as e:
-        logger.error("Failed to send WhatsApp notification: %s", e)
+        logger.error("Failed to send Slack notification: %s", e)
 
 def load_portfolio_data():
     """Reads projects and skills data dynamically from JSON file inside repository to avoid idle DB hosting costs."""
@@ -95,8 +89,8 @@ def contact_view(request):
         if form.is_valid():
             message_obj = form.save()
             
-            # Send WhatsApp Notification via Green API
-            send_whatsapp_notification(
+            # Send Slack Notification via Slack Webhook
+            send_slack_notification(
                 message_obj.name, 
                 message_obj.email, 
                 message_obj.subject, 
