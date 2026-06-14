@@ -61,8 +61,8 @@
             {% csrf_token %}
             <!-- Honeypot field (hidden from humans, filled by bots) -->
             <div style="display: none; visibility: hidden;">
-                <label for="honeypot">If you are human, leave blank:</label>
-                <input type="text" id="honeypot" name="honeypot" tabindex="-1" autocomplete="off">
+                <label for="website">Website:</label>
+                <input type="url" id="website" name="website" tabindex="-1" autocomplete="off">
             </div>
 
             <label for="name">Name:</label>
